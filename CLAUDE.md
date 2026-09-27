@@ -20,6 +20,11 @@ La fuente de verdad nutricional es un único archivo JSON maestro (`dietas_equin
 dietas-equinos/
 ├── CLAUDE.md                          ← este archivo
 ├── README.md                          ← pasos para levantar el proyecto
+├── .gitignore                         ← node_modules, .env, .vercel, logs...
+├── vercel.json                        ← config de deploy (install, outputDirectory, rewrites)
+│
+├── api/
+│   └── index.js                       ← función serverless de Vercel: reexporta backend/src/app.js
 │
 ├── backend/
 │   ├── package.json                   ← dependencias: express, pg, dotenv, cors
@@ -34,10 +39,11 @@ dietas-equinos/
 │       ├── app.js                     ← Express: middlewares, /api/*, express.static
 │       │
 │       ├── config/
-│       │   └── db.js                  ← Pool pg + función query(text, params)
+│       │   └── db.js                  ← Pool pg + query(); SSL automático si el host no es local
 │       │
 │       ├── db/
 │       │   ├── schema.sql             ← DDL idempotente (CREATE TABLE IF NOT EXISTS)
+│       │   ├── run-schema.js          ← aplica schema.sql sin necesitar psql
 │       │   └── seed.js                ← carga el JSON maestro en PostgreSQL
 │       │
 │       └── modules/
@@ -128,7 +134,7 @@ perfiles_nrc (catálogo NRC crudo, no usado en el flujo principal)
 
 ## API REST
 
-Todos los endpoints tienen prefijo `/api`. El frontend lo sirve el mismo Express, por eso `api.js` usa rutas relativas (`/api/...`).
+Todos los endpoints tienen prefijo `/api`. El frontend y la API comparten origen (Express en local, Vercel en producción), por eso `api.js` usa rutas relativas (`/api/...`).
 
 | Método | Ruta | Descripción |
 |--------|------|-------------|
@@ -136,7 +142,7 @@ Todos los endpoints tienen prefijo `/api`. El frontend lo sirve el mismo Express
 | `GET` | `/api/estados-salud` | Lista los 6 estados (`id`, `clave`, `nombre`, `fuente`) |
 | `GET` | `/api/dietas?categoria=:clave&estado=:clave[&peso=NNN]` | Dieta completa con items agrupados. Si se pasa `peso`, recalcula la ración. |
 | `GET` | `/api/dietas/:id` | Igual que el anterior pero por id numérico |
-| `GET` | `/api/health` | Healthcheck (verifica conexión a PostgreSQL) |
+| `GET` | `/api/health` | Healthcheck: ejecuta `SELECT 1`. 200 con `base_datos: "conectada"` o 503 con `base_datos: "sin conexión"` |
 
 ### Respuesta de `/api/dietas`
 
@@ -219,20 +225,24 @@ onClick (btn-pdf)
 
 ## Variables de entorno
 
-Archivo: `backend/.env` (copiar de `.env.example`)
+Archivo: `backend/.env` (copiar de `.env.example`). Se usan los nombres estándar `PG*`, los mismos que genera la integración de Neon en Vercel:
 
 ```
-PGHOST=localhost
-PGPORT=5432
-PGDATABASE=dietas_equinos
-PGUSER=postgres
-PGPASSWORD=123456
+PGHOST=...          # localhost, o ep-xxxx-pooler.region.aws.neon.tech para Neon
+PGPORT=5432         # opcional, 5432 por defecto
+PGDATABASE=...      # dietas_equinos (local) | neondb (Neon)
+PGUSER=...          # postgres (local) | neondb_owner (Neon)
+PGPASSWORD=...
 PORT=3000
 ```
 
-`db.js` crea un `Pool` de `pg` leyendo estas variables con `dotenv` y exporta `query(text, params)` para todos los servicios.
+`db.js`:
+- Carga `backend/.env` por **ruta absoluta** (`path.join(__dirname, '..', '..', '.env')`), así funciona sin importar desde qué carpeta se ejecute Node (incluida la función `api/index.js`).
+- Activa **SSL automáticamente** (`{ rejectUnauthorized: false }`) cuando `PGHOST` no es `localhost`/`127.0.0.1`, como exige Neon.
+- Llama a `dns.setDefaultResultOrder('ipv4first')` para priorizar IPv4.
+- Exporta `pool` y `query(text, params)` para todos los servicios.
 
-> El archivo `backend/.env` ya existe con estas credenciales reales. No regenerar.
+> `backend/.env` ya existe y **actualmente apunta a Neon** (credenciales reales pegadas desde el panel de Neon). No regenerar ni sobrescribir. Nunca se sube a git (lo cubre `backend/.gitignore` y el `.gitignore` raíz). `.env.example` debe contener **solo placeholders**.
 
 ---
 
@@ -241,7 +251,8 @@ PORT=3000
 ```bash
 # Desde backend/
 npm install                   # instalar dependencias (ya hecho)
-node src/db/seed.js           # cargar datos en PostgreSQL (idempotente)
+node src/db/run-schema.js     # solo aplicar schema.sql (sin psql)
+node src/db/seed.js           # cargar datos en PostgreSQL (idempotente, también aplica el esquema)
 node src/server.js            # levantar servidor
 # o:
 npm start                     # equivale a node src/server.js
@@ -273,9 +284,11 @@ node src/server.js
 
 1. **No modificar** `backend/data/dietas_equinos_maestro.json`. Es la fuente de verdad; el seed es una carga fiel, no una reinterpretación.
 2. **PDF 100% en cliente** con jsPDF (CDN). Nunca pre-generar ni almacenar PDFs en disco o BD.
-3. **Frontend servido por Express** (`express.static`). No abrir `index.html` como archivo local.
-4. **Todo en español**: código, comentarios, mensajes de error, UI.
+3. **Frontend servido por Express** (`express.static`) en local y por la CDN de Vercel en producción. No abrir `index.html` como archivo local.
+4. **Todo en español**: código, comentarios, mensajes de error, UI, commits.
 5. El `seed.js` es idempotente: usa `ON CONFLICT DO NOTHING` en categorías y estados, y `ON CONFLICT DO UPDATE` en dietas antes de reinsertar sus items.
+6. **Nunca subir credenciales**: antes de cada commit revisar `git status` y confirmar que `backend/.env` no aparece y que `.env.example` solo tiene placeholders.
+7. **`app.js` no llama a `app.listen`**: lo hace `server.js` (local). Vercel importa `app` desde `api/index.js`. Cualquier ruta nueva se registra en `app.js` para que funcione en ambos entornos.
 
 ---
 
@@ -285,20 +298,63 @@ node src/server.js
 - **`perfiles_nrc`** se carga en BD por trazabilidad académica pero no forma parte del flujo principal de la web (no hay endpoint dedicado).
 - **`FACTORES_RACION` vive en el backend** (`dietas.service.js`), no en el frontend, para que nunca se desincronicen si se ajustan los porcentajes.
 - **Frontend servido por el mismo proceso Express**: simplifica el arranque local (un solo `node src/server.js`), evita problemas de CORS y es correcto para este contexto universitario.
+- **Deploy en Vercel sin reestructurar carpetas**: en vez de mover el backend a la raíz o duplicar dependencias, `api/index.js` reexporta la app Express existente y `vercel.json` instala las dependencias de `backend/`. Local y producción ejecutan exactamente el mismo código.
 
 ---
 
-## Estado del entorno local (2026-06-27)
+## Despliegue en producción (Vercel + Neon)
+
+| Elemento | Valor |
+|---|---|
+| URL de producción | https://pagina-web-dietas-equinos.vercel.app |
+| Repositorio | https://github.com/andrescorvi9-netizen/Pagina-web-Dietas-Equinos (rama `main`) |
+| Proyecto Vercel | `pagina-web-dietas-equinos` (team "Dietas"), framework "Other" |
+| Base de datos | Neon (integración de Vercel, sin prefijo de variables) — BD `neondb`, usuario `neondb_owner` |
+| Deploy | Automático en cada push a `main` |
+
+### Cómo funciona
+
+```
+Petición → Vercel
+  ├── /api/*        → rewrite (vercel.json) → función api/index.js → app Express (backend/src/app.js)
+  │                    └── req.url conserva la ruta original, así Express enruta igual que en local
+  └── resto de rutas → archivos estáticos de frontend/ (outputDirectory)
+```
+
+`vercel.json` (raíz):
+- `installCommand: "npm install --prefix backend"` → las dependencias viven solo en `backend/package.json`.
+- `buildCommand` es un `echo` (no hay paso de build).
+- `outputDirectory: "frontend"`.
+- `rewrites: /api/(.*) → /api`.
+
+### Reglas para no romper el deploy
+
+- El **Root Directory** del proyecto en Vercel debe quedar en la raíz (`./`). Si se cambia a `backend/`, Vercel deja de leer `vercel.json` y de ver `frontend/` y `api/`.
+- Las variables `PGHOST`, `PGUSER`, `PGDATABASE`, `PGPASSWORD` las inyecta la integración de Neon en Vercel; no hace falta `.env` en producción. `PGPORT` es opcional (5432 por defecto).
+- En producción `PGHOST` es el host **pooled** (`-pooler`), adecuado para funciones serverless.
+- Para cargar o actualizar datos en Neon: con `backend/.env` apuntando a Neon, correr `node src/db/seed.js` desde `backend/`.
+- Verificación rápida tras un deploy: `GET /api/health` debe devolver `base_datos: "conectada"`.
+
+### Incidencia conocida: `ENOTFOUND` al conectar a Neon (2026-09-27)
+
+`node src/db/seed.js` falló varias veces con `getaddrinfo ENOTFOUND ep-...-pooler...neon.tech`. **Causa:** fallo intermitente del resolver DNS de la red local (router `192.168.80.1`), no del código ni de Neon. `nslookup` resolvía bien, Node fallaba incluso con `neon.tech` y poco después resolvía con normalidad. **Si reaparece:** reintentar, o configurar DNS `1.1.1.1` / `8.8.8.8` en el adaptador de red de Windows. No es necesario cambiar `db.js` a `DATABASE_URL`.
+
+---
+
+## Estado del entorno local (actualizado 2026-09-27)
 
 ### Configuración verificada
 
 | Componente | Estado | Detalle |
 |---|---|---|
-| Node.js | v24.16.0 | Instalado globalmente |
-| PostgreSQL | 18 — servicio `postgresql-x64-18` | Instalado en `C:\Program Files\PostgreSQL\18\` |
-| Base de datos | `dietas_equinos` creada | Propietario: `postgres` |
-| Seed ejecutado | 5 cat · 6 estados · 30 dietas · 430 ítems · 44 perfiles NRC | Sin combinaciones faltantes |
+| Node.js | v24.16.0 | El `node` del PATH es `F:\msQL\node.exe` |
+| PostgreSQL local | 18 — servicio `postgresql-x64-18` | Instalado en `C:\Program Files\PostgreSQL\18\`; BD `dietas_equinos` (propietario `postgres`) |
+| Base de datos activa | **Neon** (`neondb`) | `backend/.env` apunta a Neon desde 2026-09-27 |
+| Seed en Neon | 5 cat · 6 estados · 30 dietas · 430 ítems · 44 perfiles NRC | Sin combinaciones faltantes (2026-09-27) |
+| Seed en local | Mismos conteos | Ejecutado 2026-06-27 |
 | Puerto | 3000 | El servidor corre en `http://localhost:3000/` |
+
+Para volver a trabajar contra el Postgres local, cambiar las variables `PG*` de `backend/.env` a los valores locales (el SSL se desactiva solo con `PGHOST=localhost`).
 
 ### Nota sobre el puerto 3000
 
@@ -318,7 +374,7 @@ C:\Program Files\PostgreSQL\18\bin\psql.exe
 
 Uso con contraseña por variable de entorno para evitar prompt interactivo:
 ```powershell
-$env:PGPASSWORD = "123456"
+$env:PGPASSWORD = "<contraseña_local_de_postgres>"
 & "C:\Program Files\PostgreSQL\18\bin\psql.exe" -U postgres -d dietas_equinos -c "<consulta>"
 ```
 
@@ -341,3 +397,15 @@ Flujo completo verificado con Playwright + Microsoft Edge contra `http://localho
 | Ruta inválida devuelve HTTP 404 con mensaje descriptivo | PASS |
 
 **Comportamiento observado del PDF:** el archivo se nombra automáticamente como `dieta_<codigo>_<estado>.pdf`.
+
+## Pruebas contra Neon y producción (2026-09-27)
+
+| Prueba | Entorno | Resultado |
+|--------|---------|-----------|
+| `GET /api/health`, `/api/categorias`, `/api/estados-salud`, `/api/dietas?categoria=adulto&estado=laminitis[&peso=520]` | Local (`localhost:3001`) contra Neon | 200; numéricos llegan como `number` |
+| Origen de datos | Local | `current_database() = neondb`, `current_user = neondb_owner` |
+| `api/index.js` cargado desde la raíz (simulación de Vercel) | Local | 200 en todos los endpoints; 404 JSON en ruta de API inválida |
+| `/`, `/css/styles.css` | Producción | 200 (frontend estático) |
+| `/api/health` | Producción | 200, `base_datos: "conectada"` |
+| `/api/categorias`, `/api/dietas?categoria=adulto&estado=laminitis&peso=520` | Producción | 200 |
+| `/api/no-existe` | Producción | 404 `{"error":"Recurso de API no encontrado."}` |

@@ -7,6 +7,8 @@ el **NRC (*Nutrient Requirements of Horses*, 6.ª ed.)**.
 Metodología **XP** · Arquitectura **monolítica modular**
 Stack: **Node.js + Express** (backend) · **PostgreSQL** (persistencia) · **HTML/CSS/JS vanilla** (frontend)
 
+🌐 **En producción:** https://pagina-web-dietas-equinos.vercel.app (Vercel + base de datos en Neon)
+
 ---
 
 ## ¿Qué hace?
@@ -24,8 +26,11 @@ Stack: **Node.js + Express** (backend) · **PostgreSQL** (persistencia) · **HTM
 ## Requisitos previos
 
 - **Node.js** 18 o superior.
-- **PostgreSQL** instalado y corriendo localmente, con las herramientas de
-  línea de comandos (`psql`, `createdb`) accesibles en el PATH.
+- Una base de datos **PostgreSQL**, en cualquiera de estas dos opciones:
+  - **Local:** PostgreSQL instalado y corriendo (con `psql`/`createdb` en el
+    PATH, o pgAdmin).
+  - **En la nube:** un proyecto de [Neon](https://neon.tech) (es la base que
+    usa el despliegue en Vercel).
 
 ---
 
@@ -44,6 +49,8 @@ npm install
 `package.json`.)
 
 ### 2. Crear la base de datos
+
+> Si usas **Neon**, omite este paso: la base `neondb` ya existe.
 
 Con la línea de comandos de PostgreSQL:
 
@@ -69,16 +76,33 @@ Copy-Item .env.example .env
 cp .env.example .env
 ```
 
-Contenido de `.env` (ajusta `PGUSER` / `PGPASSWORD` según tu PostgreSQL):
+**Opción A — PostgreSQL local** (ajusta `PGUSER` / `PGPASSWORD`):
 
 ```
 PGHOST=localhost
 PGPORT=5432
 PGDATABASE=dietas_equinos
 PGUSER=postgres
-PGPASSWORD=postgres
+PGPASSWORD=tu_contraseña
 PORT=3000
 ```
+
+**Opción B — Neon:** copia los valores desde el panel de Neon (botón
+*Connect*) o desde Vercel → *Storage*:
+
+```
+PGHOST=ep-xxxx-pooler.region.aws.neon.tech
+PGDATABASE=neondb
+PGUSER=neondb_owner
+PGPASSWORD=tu_contraseña
+PORT=3000
+```
+
+Con un host que no sea `localhost`/`127.0.0.1`, la conexión usa **SSL
+automáticamente** (lo exige Neon). No hace falta ninguna variable extra.
+
+> ⚠️ `backend/.env` contiene credenciales reales y **nunca** debe subirse a
+> git (ya está en `.gitignore`). `.env.example` solo lleva valores de ejemplo.
 
 ### 4. Cargar los datos (seed)
 
@@ -87,7 +111,14 @@ node src/db/seed.js
 ```
 
 Este script crea las tablas (si no existen), carga el archivo maestro y muestra
-un resumen. Es **idempotente**: puedes volver a ejecutarlo sin duplicar datos.
+un resumen (5 categorías, 6 estados, 30 dietas, 430 ítems, 44 perfiles NRC).
+Es **idempotente**: puedes volver a ejecutarlo sin duplicar datos.
+
+Si solo quieres crear las tablas, sin cargar datos y sin necesitar `psql`:
+
+```bash
+node src/db/run-schema.js
+```
 
 ### 5. Levantar el servidor
 
@@ -115,7 +146,7 @@ Prefijo: `/api`
 | GET | `/api/estados-salud` | Lista de estados de salud |
 | GET | `/api/dietas?categoria=:clave&estado=:clave[&peso=NNN]` | Dieta completa con ítems agrupados |
 | GET | `/api/dietas/:id` | Igual, por id numérico |
-| GET | `/api/health` | Healthcheck |
+| GET | `/api/health` | Healthcheck: comprueba la conexión a PostgreSQL (200 `conectada` / 503 `sin conexión`) |
 
 ### Recálculo por peso
 
@@ -130,10 +161,12 @@ del archivo maestro.
 
 ```
 dietas-equinos/
+├── api/
+│   └── index.js              ← función serverless de Vercel (reutiliza la app Express)
 ├── backend/
 │   ├── src/
 │   │   ├── config/db.js
-│   │   ├── db/{schema.sql, seed.js}
+│   │   ├── db/{schema.sql, seed.js, run-schema.js}
 │   │   ├── modules/{categorias, estados-salud, dietas}/
 │   │   ├── app.js
 │   │   └── server.js
@@ -144,9 +177,64 @@ dietas-equinos/
 │   ├── index.html
 │   ├── css/styles.css
 │   └── js/{api.js, render.js, pdf.js, main.js}
+├── .gitignore
+├── vercel.json               ← configuración del despliegue en Vercel
 ├── CLAUDE.md
 └── README.md
 ```
+
+---
+
+## Despliegue en Vercel
+
+La aplicación está desplegada en **https://pagina-web-dietas-equinos.vercel.app**.
+Cada `git push` a la rama `main` genera un nuevo despliegue automáticamente.
+
+### Cómo está configurado
+
+- **`api/index.js`** exporta la misma app Express de `backend/src/app.js`, y
+  Vercel la ejecuta como función serverless. En local y en producción corre el
+  mismo código.
+- **`vercel.json`** indica a Vercel que:
+  - instale las dependencias de `backend/` (`npm install --prefix backend`);
+  - publique `frontend/` como sitio estático (`outputDirectory`);
+  - redirija todas las rutas `/api/*` a la función (`rewrites`).
+- **Base de datos:** la integración de Neon en Vercel crea las variables
+  `PGHOST`, `PGUSER`, `PGDATABASE` y `PGPASSWORD`, que `db.js` lee tal cual. En
+  producción no se usa archivo `.env`.
+
+### Ajustes en el panel de Vercel
+
+- **Framework Preset:** *Other*.
+- **Root Directory:** la raíz del repositorio (`./`). **No** lo cambies a
+  `backend/`, porque entonces Vercel no encuentra `vercel.json`, `api/` ni
+  `frontend/`.
+- **Build & Output Settings:** no hace falta tocarlos, porque `vercel.json` los
+  sobrescribe.
+
+### Actualizar los datos de producción
+
+Con `backend/.env` apuntando a Neon, ejecuta desde `backend/`:
+
+```bash
+node src/db/seed.js
+```
+
+### Verificar un despliegue
+
+```
+https://pagina-web-dietas-equinos.vercel.app/api/health
+→ {"estado":"ok", ..., "base_datos":"conectada"}
+```
+
+### Solución de problemas
+
+- **`getaddrinfo ENOTFOUND ep-...neon.tech`** al correr el seed o el servidor
+  en local: suele ser un fallo temporal del DNS de la red, no del proyecto.
+  Comprueba con `nslookup <host>` y vuelve a intentarlo. Si se repite, cambia
+  el DNS del adaptador de red a `1.1.1.1` o `8.8.8.8`.
+- **`/api/health` devuelve 503:** revisa las variables `PG*` en
+  *Settings → Environment Variables* de Vercel (o en tu `.env` local).
 
 ---
 
@@ -187,9 +275,10 @@ médico veterinario zootecnista.**
 
 ## Decisiones de diseño (no especificadas explícitamente)
 
-1. **Servido del frontend y *fallback* SPA:** Express sirve `frontend/` con
-   `express.static` y cualquier ruta que no empiece por `/api` devuelve
-   `index.html`. Así el frontend nunca se abre como archivo local.
+1. **Servido del frontend y *fallback* SPA:** en local, Express sirve
+   `frontend/` con `express.static` y cualquier ruta que no empiece por `/api`
+   devuelve `index.html`. Así el frontend nunca se abre como archivo local. En
+   producción, los estáticos los sirve directamente la CDN de Vercel.
 2. **`estados_salud.criterio_nutricional`:** el JSON define el criterio por
    combinación (categoría + estado), pero el texto es idéntico entre categorías
    para un mismo estado. Se almacena la primera ocurrencia en la tabla

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dietas para Equinos · Universidad de Cundinamarca</title>
+
+  <!-- Tipografías: Fraunces (títulos), Source Sans 3 (texto), JetBrains Mono (cifras) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="cabecera">
+    <div class="cabecera__contenido">
+      <div class="cabecera__marca">
+        <span class="cabecera__emblema">UdeC</span>
+        <div>
+          <h1 class="cabecera__titulo">Dietas para Equinos</h1>
+          <p class="cabecera__subtitulo">
+            Recomendaciones nutricionales basadas en el NRC
+            (<em>Nutrient Requirements of Horses</em>, 6.ª ed.)
+          </p>
+        </div>
+      </div>
+      <p class="cabecera__institucion">
+        Universidad de Cundinamarca · Ingeniería de Sistemas
+      </p>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <!-- ============ Formulario de caracterización ============ -->
+    <section class="tarjeta formulario" aria-labelledby="titulo-form">
+      <h2 id="titulo-form" class="seccion__titulo">Caracterización del caballo</h2>
+      <p class="seccion__ayuda">
+        Ingresa los datos del animal y selecciona su categoría y estado de salud
+        para generar la dieta recomendada.
+      </p>
+
+      <form id="form-dieta" class="form-grid" autocomplete="off">
+        <div class="campo">
+          <label for="nombre-caballo">Nombre del caballo</label>
+          <input type="text" id="nombre-caballo" name="nombre"
+                 placeholder="Ej: Relámpago" />
+        </div>
+
+        <div class="campo">
+          <label for="codigo-caballo">Código de identificación</label>
+          <input type="text" id="codigo-caballo" name="codigo"
+                 placeholder="Ej: EQ-0427" />
+        </div>
+
+        <div class="campo">
+          <label for="select-categoria">Categoría <span class="req">*</span></label>
+          <select id="select-categoria" name="categoria" required>
+            <option value="">Selecciona una categoría…</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="select-estado">Estado de salud <span class="req">*</span></label>
+          <select id="select-estado" name="estado" required>
+            <option value="">Selecciona un estado…</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="input-peso">Peso real (kg) <span class="opcional">opcional</span></label>
+          <input type="number" id="input-peso" name="peso" min="1" step="1"
+                 placeholder="Ej: 480" />
+          <small class="campo__nota">
+            Si lo indicas, la ración se recalcula para ese peso.
+          </small>
+        </div>
+      </form>
+
+      <p id="mensaje-estado" class="mensaje" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- ============ Resultado de la dieta ============ -->
+    <section id="resultado" class="resultado" aria-live="polite"></section>
+
+    <!-- Botón de descarga: visible solo cuando hay una dieta cargada -->
+    <div class="acciones" id="acciones" hidden>
+      <button type="button" id="btn-pdf" class="boton boton--principal">
+        Descargar dieta en PDF
+      </button>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <p>
+      Proyecto académico · Metodología XP · Arquitectura monolítica modular.
+      Las dietas son orientativas y no sustituyen la valoración de un médico
+      veterinario zootecnista.
+    </p>
+  </footer>
+
+  <!-- jsPDF desde CDN: el PDF se genera 100% en el navegador -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Módulos de la aplicación (orden importa: main usa a los demás) -->
+  <script src="js/api.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

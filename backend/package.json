@@ -1,0 +1,25 @@
+{
+  "name": "dietas-equinos-backend",
+  "version": "1.0.0",
+  "description": "Backend (Node.js + Express + PostgreSQL) del proyecto Dietas para Equinos - Universidad de Cundinamarca",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "seed": "node src/db/seed.js"
+  },
+  "keywords": [
+    "equinos",
+    "dietas",
+    "nrc",
+    "express",
+    "postgresql"
+  ],
+  "author": "Universidad de Cundinamarca - Ingeniería de Sistemas",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0"
+  }
+}

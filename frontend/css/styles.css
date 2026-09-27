@@ -1,0 +1,272 @@
+/* =====================================================================
+   Estilos · Dietas para Equinos
+   Paleta tierra/pradera: verdes, marrones y cremas.
+   Tipografías: Fraunces (títulos), Source Sans 3 (texto), JetBrains Mono (cifras).
+   ===================================================================== */
+
+:root {
+  /* Paleta */
+  --crema:        #f6f1e7;
+  --crema-2:      #efe7d6;
+  --blanco:       #fffdf8;
+  --pradera:      #4d6b3c;
+  --pradera-osc:  #38522b;
+  --pradera-cla:  #6f8f57;
+  --tierra:       #7a5230;
+  --tierra-cla:   #a87c52;
+  --carbon:       #2f2a22;
+  --gris:         #6b6357;
+  --linea:        #ddd2bc;
+
+  /* Estados / señales */
+  --documentado:  #2f6b3c;
+  --documentado-bg:#e2efe2;
+  --inferido:     #9a6a16;
+  --inferido-bg:  #f6ecd4;
+  --evitar:       #9c3b2e;
+  --evitar-bg:    #f7e6e1;
+  --priorizar:    #355f2c;
+  --priorizar-bg: #e6f0dd;
+  --aviso:        #8a4b12;
+  --aviso-bg:     #fbeeda;
+
+  --sombra: 0 6px 18px rgba(60, 45, 25, 0.10);
+  --radio: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  color: var(--carbon);
+  background:
+    radial-gradient(1200px 400px at 80% -10%, #e9efdc 0%, transparent 60%),
+    var(--crema);
+  line-height: 1.55;
+}
+
+/* ----------------------- Cabecera ----------------------- */
+.cabecera {
+  background: linear-gradient(135deg, var(--pradera-osc), var(--pradera));
+  color: var(--crema);
+  border-bottom: 5px solid var(--tierra);
+}
+.cabecera__contenido {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.6rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.cabecera__marca { display: flex; align-items: center; gap: 1rem; }
+.cabecera__emblema {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  background: var(--crema);
+  color: var(--pradera-osc);
+  width: 56px; height: 56px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 3px var(--tierra-cla);
+  flex-shrink: 0;
+}
+.cabecera__titulo {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.9rem;
+  letter-spacing: 0.2px;
+}
+.cabecera__subtitulo { margin: 0.15rem 0 0; opacity: 0.92; font-size: 0.95rem; }
+.cabecera__institucion { margin: 0; font-size: 0.85rem; opacity: 0.85; text-align: right; }
+
+/* ----------------------- Contenedor ----------------------- */
+.contenedor {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 1.75rem 1.25rem 3rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.tarjeta {
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 1.5rem;
+}
+
+.seccion__titulo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  color: var(--pradera-osc);
+  margin: 0 0 0.25rem;
+  font-size: 1.4rem;
+}
+.seccion__ayuda { margin: 0 0 1.25rem; color: var(--gris); font-size: 0.95rem; }
+
+/* ----------------------- Formulario ----------------------- */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+}
+.campo { display: flex; flex-direction: column; gap: 0.35rem; }
+.campo label { font-weight: 600; font-size: 0.92rem; color: var(--pradera-osc); }
+.req { color: var(--evitar); }
+.opcional {
+  font-weight: 500; font-size: 0.78rem; color: var(--gris);
+  background: var(--crema-2); padding: 0.05rem 0.4rem; border-radius: 6px;
+}
+.campo input, .campo select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.6rem 0.7rem;
+  border: 1.5px solid var(--linea);
+  border-radius: 10px;
+  background: var(--crema);
+  color: var(--carbon);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.campo input:focus, .campo select:focus {
+  outline: none;
+  border-color: var(--pradera-cla);
+  box-shadow: 0 0 0 3px rgba(111, 143, 87, 0.25);
+  background: var(--blanco);
+}
+.campo__nota { color: var(--gris); font-size: 0.8rem; }
+
+.mensaje { margin: 1rem 0 0; font-size: 0.92rem; min-height: 1.2em; }
+.mensaje--error { color: var(--evitar); font-weight: 600; }
+.mensaje--info { color: var(--gris); }
+
+/* ----------------------- Resultado / ficha ----------------------- */
+.resultado:empty { display: none; }
+.resultado { display: grid; gap: 1.25rem; }
+
+.ficha__encabezado {
+  display: flex; flex-wrap: wrap; align-items: flex-start;
+  justify-content: space-between; gap: 0.75rem;
+  border-bottom: 2px solid var(--linea);
+  padding-bottom: 0.9rem; margin-bottom: 0.25rem;
+}
+.ficha__titulo {
+  font-family: 'Fraunces', serif; font-size: 1.45rem; margin: 0;
+  color: var(--pradera-osc);
+}
+.ficha__sub { margin: 0.2rem 0 0; color: var(--gris); }
+
+/* Datos del caballo */
+.datos-caballo {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem;
+  margin: 0.25rem 0 0.5rem; font-size: 0.92rem;
+}
+.datos-caballo span strong { color: var(--pradera-osc); }
+
+/* Etiqueta documentado / inferido */
+.tag {
+  display: inline-block; font-size: 0.78rem; font-weight: 700;
+  padding: 0.25rem 0.6rem; border-radius: 999px; white-space: nowrap;
+  text-transform: uppercase; letter-spacing: 0.4px;
+}
+.tag--documentado { background: var(--documentado-bg); color: var(--documentado); }
+.tag--inferido { background: var(--inferido-bg); color: var(--inferido); }
+
+.bloque { margin-top: 0.5rem; }
+.bloque__titulo {
+  font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--tierra);
+  margin: 0 0 0.5rem; border-left: 4px solid var(--tierra-cla);
+  padding-left: 0.5rem;
+}
+.criterio { color: var(--carbon); background: var(--crema-2);
+  padding: 0.7rem 0.9rem; border-radius: 10px; font-size: 0.95rem; }
+
+/* Ración destacada */
+.racion {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+.racion__item {
+  background: linear-gradient(160deg, var(--priorizar-bg), var(--crema));
+  border: 1px solid var(--linea); border-radius: 12px;
+  padding: 0.9rem; text-align: center;
+}
+.racion__valor {
+  font-family: 'JetBrains Mono', monospace; font-weight: 600;
+  font-size: 1.5rem; color: var(--pradera-osc); display: block;
+}
+.racion__etq { font-size: 0.82rem; color: var(--gris); }
+.racion__criterio { margin: 0.6rem 0 0; font-size: 0.86rem; color: var(--gris); font-style: italic; }
+
+/* Requerimientos NRC (tabla de cifras) */
+.nrc {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.6rem; margin-top: 0.6rem;
+}
+.nrc__item {
+  background: var(--crema); border: 1px solid var(--linea);
+  border-radius: 10px; padding: 0.6rem 0.7rem;
+}
+.nrc__valor { font-family: 'JetBrains Mono', monospace; font-weight: 600;
+  font-size: 1.1rem; color: var(--tierra); display: block; }
+.nrc__etq { font-size: 0.78rem; color: var(--gris); }
+
+/* Columnas priorizar / evitar */
+.columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.6rem; }
+.columna { border-radius: 12px; padding: 0.9rem; }
+.columna--priorizar { background: var(--priorizar-bg); border: 1px solid #cfe0bf; }
+.columna--evitar { background: var(--evitar-bg); border: 1px solid #ecc9c0; }
+.columna__titulo { margin: 0 0 0.5rem; font-size: 0.95rem; font-weight: 700; }
+.columna--priorizar .columna__titulo { color: var(--priorizar); }
+.columna--evitar .columna__titulo { color: var(--evitar); }
+.lista { margin: 0; padding-left: 1.1rem; }
+.lista li { margin-bottom: 0.35rem; font-size: 0.92rem; }
+.lista--vacia { list-style: none; padding-left: 0; color: var(--gris); font-style: italic; }
+
+.agua {
+  background: #e7f0f4; border: 1px solid #c7dde6; color: #2b4f5e;
+  border-radius: 10px; padding: 0.7rem 0.9rem; font-size: 0.93rem;
+}
+
+/* Advertencias */
+.advertencias {
+  background: var(--aviso-bg); border: 1px solid #ecd3a6;
+  border-left: 5px solid var(--aviso); border-radius: 10px; padding: 0.8rem 1rem;
+}
+.advertencias .bloque__titulo { color: var(--aviso); border: none; padding-left: 0; }
+.advertencias .lista li { color: #6f4410; }
+
+/* ----------------------- Acciones / botón ----------------------- */
+.acciones { display: flex; justify-content: center; }
+.boton {
+  font-family: inherit; font-size: 1rem; font-weight: 600;
+  border: none; border-radius: 12px; padding: 0.8rem 1.6rem;
+  cursor: pointer; transition: transform 0.12s, box-shadow 0.12s, background 0.15s;
+}
+.boton--principal {
+  background: linear-gradient(135deg, var(--tierra), var(--tierra-cla));
+  color: var(--blanco); box-shadow: var(--sombra);
+}
+.boton--principal:hover { transform: translateY(-2px); box-shadow: 0 9px 22px rgba(80,50,20,0.22); }
+.boton--principal:active { transform: translateY(0); }
+
+/* ----------------------- Pie ----------------------- */
+.pie {
+  border-top: 1px solid var(--linea); background: var(--crema-2);
+  color: var(--gris); font-size: 0.85rem;
+}
+.pie p { max-width: 980px; margin: 0 auto; padding: 1.1rem 1.25rem; text-align: center; }
+
+/* ----------------------- Responsivo ----------------------- */
+@media (max-width: 680px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .racion { grid-template-columns: 1fr; }
+  .columnas { grid-template-columns: 1fr; }
+  .cabecera__institucion { text-align: left; }
+}

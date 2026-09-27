@@ -1,0 +1,32 @@
+# Dependencias
+
+backend/node_modules/
+
+
+# Variables de entorno y credenciales
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operativo / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Build / artefactos
+dist/
+build/
+coverage/
+
+# Vercel
+.vercel
+
+# Certificados u otras claves sueltas
+*.pem
+*.key

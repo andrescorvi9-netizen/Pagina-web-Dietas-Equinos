@@ -1,0 +1,2216 @@
+{
+  "metadata": {
+    "titulo": "Archivo maestro de dietas para equinos - Proyecto Dietas para Equinos",
+    "version": "1.0",
+    "fecha_generacion": "2026-06-27",
+    "fuentes": [
+      "requerimientos_nrc.csv (NRC, Nutrient Requirements of Horses, 6ta ed.)",
+      "diccionario_forrajes.txt (NRC, tablas 16-6)",
+      "guia_enfermedades.txt (NRC, manejo nutricional por condición)"
+    ],
+    "categorias_caballo": [
+      "potrillo",
+      "joven",
+      "adulto",
+      "yegua_gestante",
+      "caballo_tiro"
+    ],
+    "estados_salud": [
+      "sin_complicaciones",
+      "deshidratacion",
+      "desnutricion",
+      "laminitis",
+      "colicos",
+      "influenza"
+    ],
+    "nota_metodologica": "Las combinaciones para 'laminitis', 'colicos' y 'sin_complicaciones' están basadas directamente en secciones documentadas de guia_enfermedades.txt. Las combinaciones para 'deshidratacion', 'desnutricion' e 'influenza' fueron INFERIDAS a partir de principios generales del NRC y de secciones análogas de la guía (manejo de agua, EGUS, RAO/Heaves), ya que las fuentes no incluyen secciones dedicadas a estas tres condiciones. Cada bloque de estado de salud indica su campo 'fuente': 'documentado' o 'inferido'. El plan de ración (kg MS/día) es una ESTIMACIÓN basada en %% de peso corporal; debe ajustarse con el peso real y condición corporal del caballo, e idealmente validarse con un médico veterinario zootecnista."
+  },
+  "categorias": {
+    "potrillo": {
+      "nombre": "Potrillo (crecimiento, 4-12 meses)",
+      "descripcion": "Potro en etapa de crecimiento activo, desde el destete hasta el año de edad.",
+      "notas_nrc": "El potro de 4-6 meses aún puede recibir leche materna parcial; ganancia diaria de peso alta (0.3-0.8 kg/día según raza). Requiere ratio Ca:P estricta (1.5-2:1) y control de energía para prevenir DOD/OCD.",
+      "perfiles_nrc_disponibles": {
+        "peso_maduro_500kg_ejemplo": {
+          "4_meses": {
+            "peso_actual_kg": 168.0,
+            "ED_Mcal_dia": 13.3,
+            "PC_g_dia": 669.0,
+            "Lisina_g_dia": 28.8,
+            "Ca_g_dia": 39.1,
+            "P_g_dia": 21.7,
+            "Mg_g_dia": 3.6,
+            "K_g_dia": 10.9,
+            "Na_g_dia": 4.2,
+            "Zn_mg_dia": 168.5,
+            "Cu_mg_dia": 42.1,
+            "Se_mg_dia": 0.42,
+            "VitA_kUI_dia": 7.6,
+            "VitE_UI_dia": 337.0
+          },
+          "6_meses": {
+            "peso_actual_kg": 216.0,
+            "ED_Mcal_dia": 15.5,
+            "PC_g_dia": 676.0,
+            "Lisina_g_dia": 29.1,
+            "Ca_g_dia": 38.6,
+            "P_g_dia": 21.5,
+            "Mg_g_dia": 4.1,
+            "K_g_dia": 13.0,
+            "Na_g_dia": 5.0,
+            "Zn_mg_dia": 215.9,
+            "Cu_mg_dia": 54.0,
+            "Se_mg_dia": 0.54,
+            "VitA_kUI_dia": 9.7,
+            "VitE_UI_dia": 432.0
+          },
+          "12_meses": {
+            "peso_actual_kg": 321.0,
+            "ED_Mcal_dia": 18.8,
+            "PC_g_dia": 846.0,
+            "Lisina_g_dia": 36.4,
+            "Ca_g_dia": 37.7,
+            "P_g_dia": 20.9,
+            "Mg_g_dia": 5.4,
+            "K_g_dia": 17.4,
+            "Na_g_dia": 6.9,
+            "Zn_mg_dia": 321.2,
+            "Cu_mg_dia": 80.3,
+            "Se_mg_dia": 0.8,
+            "VitA_kUI_dia": 14.5,
+            "VitE_UI_dia": 642.0
+          }
+        },
+        "peso_maduro_400kg": {
+          "4_meses": {
+            "peso_actual_kg": 135.0,
+            "ED_Mcal_dia": 10.6,
+            "PC_g_dia": 535.0,
+            "Lisina_g_dia": 23.0,
+            "Ca_g_dia": 31.3,
+            "P_g_dia": 17.4,
+            "Mg_g_dia": 2.9,
+            "K_g_dia": 8.8,
+            "Na_g_dia": 3.4,
+            "Zn_mg_dia": 134.8,
+            "Cu_mg_dia": 33.7,
+            "Se_mg_dia": 0.34,
+            "VitA_kUI_dia": 6.1,
+            "VitE_UI_dia": 270.0
+          },
+          "6_meses": {
+            "peso_actual_kg": 173.0,
+            "ED_Mcal_dia": 12.4,
+            "PC_g_dia": 541.0,
+            "Lisina_g_dia": 23.3,
+            "Ca_g_dia": 30.9,
+            "P_g_dia": 17.2,
+            "Mg_g_dia": 3.3,
+            "K_g_dia": 10.4,
+            "Na_g_dia": 4.0,
+            "Zn_mg_dia": 172.7,
+            "Cu_mg_dia": 43.2,
+            "Se_mg_dia": 0.43,
+            "VitA_kUI_dia": 7.8,
+            "VitE_UI_dia": 345.0
+          },
+          "12_meses": {
+            "peso_actual_kg": 257.0,
+            "ED_Mcal_dia": 15.0,
+            "PC_g_dia": 677.0,
+            "Lisina_g_dia": 29.1,
+            "Ca_g_dia": 30.1,
+            "P_g_dia": 16.7,
+            "Mg_g_dia": 4.3,
+            "K_g_dia": 13.9,
+            "Na_g_dia": 5.5,
+            "Zn_mg_dia": 257.0,
+            "Cu_mg_dia": 64.2,
+            "Se_mg_dia": 0.64,
+            "VitA_kUI_dia": 11.6,
+            "VitE_UI_dia": 514.0
+          }
+        },
+        "peso_maduro_900kg": {
+          "4_meses": {
+            "peso_actual_kg": 578.0,
+            "ED_Mcal_dia": 33.8,
+            "PC_g_dia": 1522.0,
+            "Lisina_g_dia": 65.5,
+            "Ca_g_dia": 67.8,
+            "P_g_dia": 37.7,
+            "Mg_g_dia": 9.7,
+            "K_g_dia": 31.4,
+            "Na_g_dia": 12.4,
+            "Zn_mg_dia": 578.2,
+            "Cu_mg_dia": 144.5,
+            "Se_mg_dia": 1.45,
+            "VitA_kUI_dia": 26.0,
+            "VitE_UI_dia": 1156.0
+          }
+        }
+      },
+      "dietas_por_estado_salud": {
+        "sin_complicaciones": {
+          "nombre_estado": "Sin complicaciones de salud",
+          "fuente": "documentado",
+          "criterio_nutricional": "Dieta estándar NRC para la categoría y nivel de actividad del caballo, sin restricciones especiales.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 168.0,
+            "ED_Mcal_dia": 13.3,
+            "PC_g_dia": 669.0,
+            "Ca_g_dia": 39.1,
+            "P_g_dia": 21.7
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 3.36,
+            "forraje_kg_ms_dia": 2.35,
+            "concentrado_kg_ms_dia": 1.01,
+            "criterio": "2.0% del peso corporal en MS/día (70% forraje / 30% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas estación fría (madurez media o inmaduro según necesidad energética)",
+            "Mezcla gramínea + leguminosa (heno, madurez media) como opción equilibrada",
+            "Alfalfa hasta 30-50% del forraje total si se requiere mayor proteína/energía (crecimiento, gestación tardía, lactancia, trabajo)"
+          ],
+          "forraje_evitar": [],
+          "concentrado_recomendado": [
+            "Avena (grano, enrollada) o cebada procesada si se requiere energía adicional para trabajo",
+            "Aceite vegetal como fuente extra de energía en trabajo pesado"
+          ],
+          "concentrado_evitar": [],
+          "manejo_agua": "Agua fresca y limpia disponible ad libitum (mínimo 20-40 L/día en reposo, más en ejercicio o calor). Sal mineral siempre disponible.",
+          "suplementos": [
+            "Sal común ad libitum",
+            "Mezcla mineral balanceada Ca:P según tabla NRC"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares de alimentación",
+            "No dejar al caballo sin forraje más de 4-5 horas",
+            "Fraccionar concentrado en 2-3 porciones/día, máximo 0.5% del peso corporal por comida",
+            "Cualquier cambio de dieta debe hacerse gradualmente en 7-14 días"
+          ],
+          "advertencias": []
+        },
+        "deshidratacion": {
+          "nombre_estado": "Deshidratación",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO a partir de los principios generales de manejo de agua del NRC (sección 8 de la guía de enfermedades) y de las pautas de prevención de cólico por impactación. Las fuentes no incluyen un protocolo clínico de rehidratación; estas son pautas nutricionales de apoyo, no un tratamiento veterinario.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 168.0,
+            "ED_Mcal_dia": 13.3,
+            "PC_g_dia": 669.0,
+            "Ca_g_dia": 39.1,
+            "P_g_dia": 21.7
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 3.02,
+            "forraje_kg_ms_dia": 2.42,
+            "concentrado_kg_ms_dia": 0.6,
+            "criterio": "1.8% del peso corporal en MS/día (80% forraje / 20% concentrado)"
+          },
+          "forraje_base": [
+            "Forraje húmedo o remojado (heno humedecido) para aumentar consumo de agua junto con la fibra",
+            "Pulpa de remolacha remojada (sin melaza): aporta agua y fibra fermentable de fácil consumo",
+            "Forraje picado o en cubos remojados si hay bajo apetito"
+          ],
+          "forraje_evitar": [
+            "Heno muy seco y grueso, paja (bajo aporte de agua, mayor riesgo de impactación)"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas, palatables y húmedas (concentrado remojado) para estimular consumo total"
+          ],
+          "concentrado_evitar": [
+            "Concentrados secos en grandes cantidades de una sola vez"
+          ],
+          "manejo_agua": "INFERIDO: priorizar el restablecimiento del consumo voluntario de agua. Agua fresca, limpia y a temperatura templada (el agua fría <10°C reduce el consumo voluntario, según la guía). Ofrecer agua con electrolitos/sal disuelta para estimular la sed, y mantener acceso constante a sal mineral para favorecer la ingesta hídrica. Vigilar producción de orina y elasticidad de piel como referencia de hidratación (criterio clínico, no nutricional).",
+          "suplementos": [
+            "Electrolitos orales (sodio, potasio, cloro) — inferido de la función de la sal común y el manejo de electrolitos en ejercicio descrito en el diccionario de forrajes",
+            "Sal común (NaCl) ad libitum o añadida al agua/alimento"
+          ],
+          "reglas_alimentacion": [
+            "Ofrecer forraje húmedo en comidas pequeñas y frecuentes",
+            "No forzar grandes raciones secas hasta confirmar consumo de agua adecuado",
+            "Evitar ejercicio o transporte hasta normalizar hidratación (criterio general, no nutricional)"
+          ],
+          "advertencias": [
+            "INFERIDO: este perfil es una guía de apoyo nutricional, no sustituye evaluación y manejo veterinario de la deshidratación, que puede requerir fluidoterapia."
+          ]
+        },
+        "desnutricion": {
+          "nombre_estado": "Desnutrición / bajo peso",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO de las pautas de dietas blandas/geriátricas y de manejo energético del documento de enfermedades (sección 3), aplicando el principio general NRC de aumentar densidad energética y proteica de forma gradual y controlada.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 168.0,
+            "ED_Mcal_dia": 13.3,
+            "PC_g_dia": 669.0,
+            "Ca_g_dia": 39.1,
+            "P_g_dia": 21.7
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 3.7,
+            "forraje_kg_ms_dia": 2.22,
+            "concentrado_kg_ms_dia": 1.48,
+            "criterio": "2.2% del peso corporal en MS/día (60% forraje / 40% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de leguminosas (inmaduro) o alfalfa: alta proteína y energía media-alta para recuperación de condición",
+            "Pastura de leguminosas si hay acceso, vigilando timpanismo",
+            "Pulpa de remolacha (con o sin melaza según sensibilidad) como fuente extra de energía fermentable"
+          ],
+          "forraje_evitar": [
+            "Paja o heno de bermuda como base exclusiva (muy bajo aporte energético y proteico)"
+          ],
+          "concentrado_recomendado": [
+            "Avena o cebada procesada como fuente de energía concentrada (si no hay sensibilidad a almidón)",
+            "Harina de soya como fuente de proteína de alta calidad",
+            "Aceite vegetal (girasol, soya, canola): energía densa sin sobrecargar almidón",
+            "Granos de cervecería secos: proteína + fibra"
+          ],
+          "concentrado_evitar": [
+            "Incrementos abruptos de concentrado (riesgo de cólico/acidosis cecal)"
+          ],
+          "manejo_agua": "Agua fresca disponible ad libitum; vigilar consumo, ya que el aumento de materia seca ingerida depende del consumo de agua.",
+          "suplementos": [
+            "Vitamina E (400-800 UI/día) y vitamina C (1-2 g/día) si hay componente geriátrico o estrés oxidativo asociado",
+            "Mezcla mineral balanceada Ca:P y oligoelementos según tabla NRC para el peso y categoría"
+          ],
+          "reglas_alimentacion": [
+            "Aumentar la ración de forma gradual en 10-14 días para evitar sobrecarga digestiva",
+            "Dividir la dieta en 3-4 porciones diarias",
+            "Revisar y reevaluar peso/condición corporal periódicamente para ajustar la ración",
+            "Priorizar siempre el forraje sobre el concentrado como base calórica"
+          ],
+          "advertencias": [
+            "Evitar realimentación demasiado agresiva en casos de desnutrición severa o prolongada (riesgo de síndrome de realimentación); este perfil es orientativo y requiere supervisión veterinaria."
+          ]
+        },
+        "laminitis": {
+          "nombre_estado": "Laminitis",
+          "fuente": "documentado",
+          "criterio_nutricional": "Basado directamente en la sección 1 de la guía de enfermedades.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 168.0,
+            "ED_Mcal_dia": 13.3,
+            "PC_g_dia": 669.0,
+            "Ca_g_dia": 39.1,
+            "P_g_dia": 21.7
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 2.52,
+            "forraje_kg_ms_dia": 2.39,
+            "concentrado_kg_ms_dia": 0.13,
+            "criterio": "1.5% del peso corporal en MS/día (95% forraje / 5% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas estación fría (maduro) con NSC < 10-12%, remojado 30-60 min en agua fría antes de ofrecer",
+            "Bermuda (heno, Coastal): bajo en NSC, adecuado para laminitis",
+            "Pulpa de remolacha sin melaza, en cantidades moderadas, como complemento de fibra",
+            "Cáscaras de soya: fibra fermentable de bajo almidón"
+          ],
+          "forraje_evitar": [
+            "Pastura fresca de gramíneas o leguminosas en crecimiento activo (alto en fructanos/NSC, especialmente primavera y otoño)",
+            "Alfalfa en alta proporción si hay sobrepeso asociado"
+          ],
+          "concentrado_recomendado": [
+            "Ninguno con almidón/azúcar; si se requiere energía extra, usar aceite vegetal en pequeñas cantidades"
+          ],
+          "concentrado_evitar": [
+            "Maíz, avena, cebada (alto NSC/almidón)",
+            "Melaza de caña o de remolacha",
+            "Cualquier suplemento con azúcar o fructooligosacáridos"
+          ],
+          "manejo_agua": "Agua limpia ad libitum; sin restricciones especiales relacionadas con laminitis.",
+          "suplementos": [
+            "Bloque de sal mineral (especialmente si la dieta es principalmente heno)"
+          ],
+          "reglas_alimentacion": [
+            "Restringir o eliminar el acceso a pasto fresco, sobre todo en primavera",
+            "Si hay pastoreo permitido, limitarlo a paddocks con pasto bajo (<10 cm) y preferiblemente al amanecer",
+            "Mantener condición corporal 4-5/9 en casos crónicos con trabajo ligero",
+            "Si hay resistencia a la insulina confirmada: NSC total de la dieta < 10%"
+          ],
+          "advertencias": [
+            "No ofrecer frutas o zanahorias como premio salvo en cantidades mínimas y ocasionales",
+            "En ponis y asnos el umbral de riesgo es más bajo que en caballos grandes"
+          ]
+        },
+        "colicos": {
+          "nombre_estado": "Cólicos",
+          "fuente": "documentado",
+          "criterio_nutricional": "Basado directamente en la sección 2 de la guía de enfermedades. Se aplica el manejo general preventivo; si se conoce el subtipo específico (impactación, gases, desplazamiento, enterolitiasis) se pueden aplicar los ajustes adicionales indicados en notas.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 168.0,
+            "ED_Mcal_dia": 13.3,
+            "PC_g_dia": 669.0,
+            "Ca_g_dia": 39.1,
+            "P_g_dia": 21.7
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 3.02,
+            "forraje_kg_ms_dia": 2.57,
+            "concentrado_kg_ms_dia": 0.45,
+            "criterio": "1.8% del peso corporal en MS/día (85% forraje / 15% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas de buena calidad, humedecido si hay antecedentes de impactación",
+            "Forraje picado o en cubos remojados si hay problemas de masticación",
+            "Mezcla gramínea + leguminosa, evitando que la alfalfa supere el 50% del forraje total (riesgo de enterolitiasis)"
+          ],
+          "forraje_evitar": [
+            "Paja como forraje principal (riesgo de impactación)",
+            "Más de 50% de alfalfa en el forraje total",
+            "Pastos frescos introducidos de forma abrupta"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas y frecuentes de concentrado de fácil digestión, fraccionadas"
+          ],
+          "concentrado_evitar": [
+            "Concentrado inmediatamente después de ejercicio intenso (esperar 30-60 min)",
+            "Cambios abruptos en tipo o cantidad de concentrado"
+          ],
+          "manejo_agua": "Acceso constante a agua fresca y limpia (mínimo 20-40 L/día en reposo, más en ejercicio o calor). Agua con bajo contenido mineral (<300 mg TDS si es posible).",
+          "suplementos": [
+            "Sal mineral siempre disponible para estimular consumo de agua",
+            "En riesgo de enterolitiasis: vinagre de manzana en agua o alimento (60-120 ml/día) y psyllium periódico"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares de alimentación; no dejar el estómago vacío más de 5 horas",
+            "Dividir el concentrado en 2-3 porciones diarias, máximo 0.5% del peso corporal por comida",
+            "Cambios de dieta siempre graduales: transición de 7-14 días",
+            "Control de parásitos como parte del manejo preventivo",
+            "Evitar forraje contaminado con hongos, tierra o arena"
+          ],
+          "advertencias": [
+            "Si hay antecedente de cólico por gases: introducir pastoreo gradualmente, máximo 15-20 min/día al inicio, y evitar pastos mojados o con rocío",
+            "Si hay antecedente de enterolitiasis confirmada: cambiar completamente a heno de gramíneas"
+          ]
+        },
+        "influenza": {
+          "nombre_estado": "Influenza equina",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO: las fuentes no incluyen una sección específica sobre influenza equina. Este perfil se construye a partir de los principios generales de soporte nutricional en enfermedad respiratoria/infecciosa presentes en la guía (sección 8, RAO/Heaves, en cuanto a antioxidantes y calidad del forraje) y de los principios NRC de mantenimiento de consumo voluntario durante enfermedad.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 168.0,
+            "ED_Mcal_dia": 13.3,
+            "PC_g_dia": 669.0,
+            "Ca_g_dia": 39.1,
+            "P_g_dia": 21.7
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 3.02,
+            "forraje_kg_ms_dia": 2.42,
+            "concentrado_kg_ms_dia": 0.6,
+            "criterio": "1.8% del peso corporal en MS/día (80% forraje / 20% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de alta calidad, bajo en polvo y hongos (igual criterio que en RAO/Heaves, por similitud de vía respiratoria)",
+            "Heno remojado 30 min antes de ofrecer para reducir polvo, si hay tos o sensibilidad respiratoria",
+            "Forraje palatable y de fácil consumo para mantener ingesta durante el periodo febril/anorexia leve"
+          ],
+          "forraje_evitar": [
+            "Heno polvoso, enmohecido o almacenado en el mismo box del caballo"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas, palatables, fáciles de masticar; concentrado remojado si hay bajo apetito"
+          ],
+          "concentrado_evitar": [
+            "Forzar grandes raciones de concentrado durante el cuadro febril/anorexia"
+          ],
+          "manejo_agua": "Agua fresca y limpia siempre disponible; vigilar consumo, ya que la fiebre puede aumentar las pérdidas hídricas (criterio inferido por analogía con manejo general de hidratación).",
+          "suplementos": [
+            "INFERIDO por analogía con el manejo de RAO: vitamina C (5-20 mg/kg/día) y vitamina E/Selenio en niveles adecuados, por su rol antioxidante e inmunomodulador",
+            "Aceites omega-3 (aceite de linaza) si hay componente inflamatorio respiratorio, por su efecto antiinflamatorio documentado en la guía para condiciones respiratorias"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares y forraje disponible para preservar consumo voluntario",
+            "Reposo del trabajo/ejercicio durante el cuadro agudo (criterio general, no nutricional)",
+            "Reintroducir gradualmente la ración completa al recuperarse el apetito"
+          ],
+          "advertencias": [
+            "INFERIDO: este perfil es soporte nutricional general y NO sustituye el diagnóstico y tratamiento veterinario (incluyendo manejo antipirético, antibiótico si hay infección secundaria, y aislamiento del caballo para control de contagio)."
+          ]
+        }
+      }
+    },
+    "joven": {
+      "nombre": "Joven (crecimiento, 18-24 meses)",
+      "descripcion": "Caballo joven en fase final de crecimiento, posible inicio de trabajo ligero.",
+      "notas_nrc": "Crecimiento óseo aún no completo; mantener ratio Ca:P 1.5-2:1. Si ya inicia trabajo ligero, usar las filas 'ejercicio_ligero' que añaden energía sin descuidar minerales.",
+      "perfiles_nrc_disponibles": {
+        "peso_maduro_500kg_ejemplo": {
+          "18_meses": {
+            "peso_actual_kg": 387.0,
+            "ED_Mcal_dia": 19.2,
+            "PC_g_dia": 799.0,
+            "Lisina_g_dia": 34.4,
+            "Ca_g_dia": 37.0,
+            "P_g_dia": 20.6,
+            "Mg_g_dia": 6.2,
+            "K_g_dia": 20.2,
+            "Na_g_dia": 8.0,
+            "Zn_mg_dia": 387.5,
+            "Cu_mg_dia": 96.9,
+            "Se_mg_dia": 0.97,
+            "VitA_kUI_dia": 17.4,
+            "VitE_UI_dia": 775.0
+          },
+          "24_meses": {
+            "peso_actual_kg": 429.0,
+            "ED_Mcal_dia": 18.7,
+            "PC_g_dia": 770.0,
+            "Lisina_g_dia": 33.1,
+            "Ca_g_dia": 36.7,
+            "P_g_dia": 20.4,
+            "Mg_g_dia": 6.7,
+            "K_g_dia": 22.0,
+            "Na_g_dia": 8.8,
+            "Zn_mg_dia": 429.2,
+            "Cu_mg_dia": 107.3,
+            "Se_mg_dia": 1.07,
+            "VitA_kUI_dia": 19.3,
+            "VitE_UI_dia": 858.0
+          }
+        },
+        "peso_maduro_400kg": {
+          "18_meses": {
+            "peso_actual_kg": 310.0,
+            "ED_Mcal_dia": 15.4,
+            "PC_g_dia": 639.0,
+            "Lisina_g_dia": 27.5,
+            "Ca_g_dia": 29.6,
+            "P_g_dia": 16.5,
+            "Mg_g_dia": 4.9,
+            "K_g_dia": 16.2,
+            "Na_g_dia": 6.4,
+            "Zn_mg_dia": 310.0,
+            "Cu_mg_dia": 77.5,
+            "Se_mg_dia": 0.77,
+            "VitA_kUI_dia": 13.9,
+            "VitE_UI_dia": 620.0
+          },
+          "18_meses_ejercicio_ligero": {
+            "peso_actual_kg": 310.0,
+            "ED_Mcal_dia": 17.7,
+            "PC_g_dia": 682.0,
+            "Lisina_g_dia": 29.3,
+            "Ca_g_dia": 29.6,
+            "P_g_dia": 16.5,
+            "Mg_g_dia": 9.3,
+            "K_g_dia": 18.4,
+            "Na_g_dia": 8.8,
+            "Zn_mg_dia": 310.0,
+            "Cu_mg_dia": 77.5,
+            "Se_mg_dia": 0.77,
+            "VitA_kUI_dia": 13.9,
+            "VitE_UI_dia": 620.0
+          },
+          "24_meses": {
+            "peso_actual_kg": 343.0,
+            "ED_Mcal_dia": 15.0,
+            "PC_g_dia": 616.0,
+            "Lisina_g_dia": 26.5,
+            "Ca_g_dia": 29.3,
+            "P_g_dia": 16.3,
+            "Mg_g_dia": 5.3,
+            "K_g_dia": 17.6,
+            "Na_g_dia": 7.0,
+            "Zn_mg_dia": 343.4,
+            "Cu_mg_dia": 85.8,
+            "Se_mg_dia": 0.86,
+            "VitA_kUI_dia": 15.5,
+            "VitE_UI_dia": 687.0
+          }
+        },
+        "peso_maduro_600kg": {
+          "18_meses": {
+            "peso_actual_kg": 465.0,
+            "ED_Mcal_dia": 23.1,
+            "PC_g_dia": 959.0,
+            "Lisina_g_dia": 41.2,
+            "Ca_g_dia": 44.5,
+            "P_g_dia": 24.7,
+            "Mg_g_dia": 7.4,
+            "K_g_dia": 24.3,
+            "Na_g_dia": 9.6,
+            "Zn_mg_dia": 465.0,
+            "Cu_mg_dia": 116.2,
+            "Se_mg_dia": 1.16,
+            "VitA_kUI_dia": 20.9,
+            "VitE_UI_dia": 930.0
+          },
+          "24_meses": {
+            "peso_actual_kg": 515.0,
+            "ED_Mcal_dia": 22.4,
+            "PC_g_dia": 924.0,
+            "Lisina_g_dia": 39.7,
+            "Ca_g_dia": 44.0,
+            "P_g_dia": 24.4,
+            "Mg_g_dia": 8.0,
+            "K_g_dia": 26.4,
+            "Na_g_dia": 10.5,
+            "Zn_mg_dia": 515.0,
+            "Cu_mg_dia": 128.8,
+            "Se_mg_dia": 1.29,
+            "VitA_kUI_dia": 23.2,
+            "VitE_UI_dia": 1030.0
+          }
+        },
+        "peso_maduro_900kg": {
+          "18_meses": {
+            "peso_actual_kg": 697.0,
+            "ED_Mcal_dia": 34.6,
+            "PC_g_dia": 1438.0,
+            "Lisina_g_dia": 61.8,
+            "Ca_g_dia": 66.7,
+            "P_g_dia": 37.1,
+            "Mg_g_dia": 11.1,
+            "K_g_dia": 36.4,
+            "Na_g_dia": 14.5,
+            "Zn_mg_dia": 697.5,
+            "Cu_mg_dia": 174.4,
+            "Se_mg_dia": 1.74,
+            "VitA_kUI_dia": 31.4,
+            "VitE_UI_dia": 1395.0
+          },
+          "24_meses": {
+            "peso_actual_kg": 773.0,
+            "ED_Mcal_dia": 33.7,
+            "PC_g_dia": 1386.0,
+            "Lisina_g_dia": 59.6,
+            "Ca_g_dia": 66.0,
+            "P_g_dia": 36.7,
+            "Mg_g_dia": 12.0,
+            "K_g_dia": 39.6,
+            "Na_g_dia": 15.8,
+            "Zn_mg_dia": 772.6,
+            "Cu_mg_dia": 193.1,
+            "Se_mg_dia": 1.93,
+            "VitA_kUI_dia": 34.8,
+            "VitE_UI_dia": 1545.0
+          }
+        }
+      },
+      "dietas_por_estado_salud": {
+        "sin_complicaciones": {
+          "nombre_estado": "Sin complicaciones de salud",
+          "fuente": "documentado",
+          "criterio_nutricional": "Dieta estándar NRC para la categoría y nivel de actividad del caballo, sin restricciones especiales.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 387.0,
+            "ED_Mcal_dia": 19.2,
+            "PC_g_dia": 799.0,
+            "Ca_g_dia": 37.0,
+            "P_g_dia": 20.6
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 7.74,
+            "forraje_kg_ms_dia": 5.42,
+            "concentrado_kg_ms_dia": 2.32,
+            "criterio": "2.0% del peso corporal en MS/día (70% forraje / 30% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas estación fría (madurez media o inmaduro según necesidad energética)",
+            "Mezcla gramínea + leguminosa (heno, madurez media) como opción equilibrada",
+            "Alfalfa hasta 30-50% del forraje total si se requiere mayor proteína/energía (crecimiento, gestación tardía, lactancia, trabajo)"
+          ],
+          "forraje_evitar": [],
+          "concentrado_recomendado": [
+            "Avena (grano, enrollada) o cebada procesada si se requiere energía adicional para trabajo",
+            "Aceite vegetal como fuente extra de energía en trabajo pesado"
+          ],
+          "concentrado_evitar": [],
+          "manejo_agua": "Agua fresca y limpia disponible ad libitum (mínimo 20-40 L/día en reposo, más en ejercicio o calor). Sal mineral siempre disponible.",
+          "suplementos": [
+            "Sal común ad libitum",
+            "Mezcla mineral balanceada Ca:P según tabla NRC"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares de alimentación",
+            "No dejar al caballo sin forraje más de 4-5 horas",
+            "Fraccionar concentrado en 2-3 porciones/día, máximo 0.5% del peso corporal por comida",
+            "Cualquier cambio de dieta debe hacerse gradualmente en 7-14 días"
+          ],
+          "advertencias": []
+        },
+        "deshidratacion": {
+          "nombre_estado": "Deshidratación",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO a partir de los principios generales de manejo de agua del NRC (sección 8 de la guía de enfermedades) y de las pautas de prevención de cólico por impactación. Las fuentes no incluyen un protocolo clínico de rehidratación; estas son pautas nutricionales de apoyo, no un tratamiento veterinario.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 387.0,
+            "ED_Mcal_dia": 19.2,
+            "PC_g_dia": 799.0,
+            "Ca_g_dia": 37.0,
+            "P_g_dia": 20.6
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 6.97,
+            "forraje_kg_ms_dia": 5.58,
+            "concentrado_kg_ms_dia": 1.39,
+            "criterio": "1.8% del peso corporal en MS/día (80% forraje / 20% concentrado)"
+          },
+          "forraje_base": [
+            "Forraje húmedo o remojado (heno humedecido) para aumentar consumo de agua junto con la fibra",
+            "Pulpa de remolacha remojada (sin melaza): aporta agua y fibra fermentable de fácil consumo",
+            "Forraje picado o en cubos remojados si hay bajo apetito"
+          ],
+          "forraje_evitar": [
+            "Heno muy seco y grueso, paja (bajo aporte de agua, mayor riesgo de impactación)"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas, palatables y húmedas (concentrado remojado) para estimular consumo total"
+          ],
+          "concentrado_evitar": [
+            "Concentrados secos en grandes cantidades de una sola vez"
+          ],
+          "manejo_agua": "INFERIDO: priorizar el restablecimiento del consumo voluntario de agua. Agua fresca, limpia y a temperatura templada (el agua fría <10°C reduce el consumo voluntario, según la guía). Ofrecer agua con electrolitos/sal disuelta para estimular la sed, y mantener acceso constante a sal mineral para favorecer la ingesta hídrica. Vigilar producción de orina y elasticidad de piel como referencia de hidratación (criterio clínico, no nutricional).",
+          "suplementos": [
+            "Electrolitos orales (sodio, potasio, cloro) — inferido de la función de la sal común y el manejo de electrolitos en ejercicio descrito en el diccionario de forrajes",
+            "Sal común (NaCl) ad libitum o añadida al agua/alimento"
+          ],
+          "reglas_alimentacion": [
+            "Ofrecer forraje húmedo en comidas pequeñas y frecuentes",
+            "No forzar grandes raciones secas hasta confirmar consumo de agua adecuado",
+            "Evitar ejercicio o transporte hasta normalizar hidratación (criterio general, no nutricional)"
+          ],
+          "advertencias": [
+            "INFERIDO: este perfil es una guía de apoyo nutricional, no sustituye evaluación y manejo veterinario de la deshidratación, que puede requerir fluidoterapia."
+          ]
+        },
+        "desnutricion": {
+          "nombre_estado": "Desnutrición / bajo peso",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO de las pautas de dietas blandas/geriátricas y de manejo energético del documento de enfermedades (sección 3), aplicando el principio general NRC de aumentar densidad energética y proteica de forma gradual y controlada.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 387.0,
+            "ED_Mcal_dia": 19.2,
+            "PC_g_dia": 799.0,
+            "Ca_g_dia": 37.0,
+            "P_g_dia": 20.6
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 8.51,
+            "forraje_kg_ms_dia": 5.11,
+            "concentrado_kg_ms_dia": 3.4,
+            "criterio": "2.2% del peso corporal en MS/día (60% forraje / 40% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de leguminosas (inmaduro) o alfalfa: alta proteína y energía media-alta para recuperación de condición",
+            "Pastura de leguminosas si hay acceso, vigilando timpanismo",
+            "Pulpa de remolacha (con o sin melaza según sensibilidad) como fuente extra de energía fermentable"
+          ],
+          "forraje_evitar": [
+            "Paja o heno de bermuda como base exclusiva (muy bajo aporte energético y proteico)"
+          ],
+          "concentrado_recomendado": [
+            "Avena o cebada procesada como fuente de energía concentrada (si no hay sensibilidad a almidón)",
+            "Harina de soya como fuente de proteína de alta calidad",
+            "Aceite vegetal (girasol, soya, canola): energía densa sin sobrecargar almidón",
+            "Granos de cervecería secos: proteína + fibra"
+          ],
+          "concentrado_evitar": [
+            "Incrementos abruptos de concentrado (riesgo de cólico/acidosis cecal)"
+          ],
+          "manejo_agua": "Agua fresca disponible ad libitum; vigilar consumo, ya que el aumento de materia seca ingerida depende del consumo de agua.",
+          "suplementos": [
+            "Vitamina E (400-800 UI/día) y vitamina C (1-2 g/día) si hay componente geriátrico o estrés oxidativo asociado",
+            "Mezcla mineral balanceada Ca:P y oligoelementos según tabla NRC para el peso y categoría"
+          ],
+          "reglas_alimentacion": [
+            "Aumentar la ración de forma gradual en 10-14 días para evitar sobrecarga digestiva",
+            "Dividir la dieta en 3-4 porciones diarias",
+            "Revisar y reevaluar peso/condición corporal periódicamente para ajustar la ración",
+            "Priorizar siempre el forraje sobre el concentrado como base calórica"
+          ],
+          "advertencias": [
+            "Evitar realimentación demasiado agresiva en casos de desnutrición severa o prolongada (riesgo de síndrome de realimentación); este perfil es orientativo y requiere supervisión veterinaria."
+          ]
+        },
+        "laminitis": {
+          "nombre_estado": "Laminitis",
+          "fuente": "documentado",
+          "criterio_nutricional": "Basado directamente en la sección 1 de la guía de enfermedades.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 387.0,
+            "ED_Mcal_dia": 19.2,
+            "PC_g_dia": 799.0,
+            "Ca_g_dia": 37.0,
+            "P_g_dia": 20.6
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 5.8,
+            "forraje_kg_ms_dia": 5.51,
+            "concentrado_kg_ms_dia": 0.29,
+            "criterio": "1.5% del peso corporal en MS/día (95% forraje / 5% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas estación fría (maduro) con NSC < 10-12%, remojado 30-60 min en agua fría antes de ofrecer",
+            "Bermuda (heno, Coastal): bajo en NSC, adecuado para laminitis",
+            "Pulpa de remolacha sin melaza, en cantidades moderadas, como complemento de fibra",
+            "Cáscaras de soya: fibra fermentable de bajo almidón"
+          ],
+          "forraje_evitar": [
+            "Pastura fresca de gramíneas o leguminosas en crecimiento activo (alto en fructanos/NSC, especialmente primavera y otoño)",
+            "Alfalfa en alta proporción si hay sobrepeso asociado"
+          ],
+          "concentrado_recomendado": [
+            "Ninguno con almidón/azúcar; si se requiere energía extra, usar aceite vegetal en pequeñas cantidades"
+          ],
+          "concentrado_evitar": [
+            "Maíz, avena, cebada (alto NSC/almidón)",
+            "Melaza de caña o de remolacha",
+            "Cualquier suplemento con azúcar o fructooligosacáridos"
+          ],
+          "manejo_agua": "Agua limpia ad libitum; sin restricciones especiales relacionadas con laminitis.",
+          "suplementos": [
+            "Bloque de sal mineral (especialmente si la dieta es principalmente heno)"
+          ],
+          "reglas_alimentacion": [
+            "Restringir o eliminar el acceso a pasto fresco, sobre todo en primavera",
+            "Si hay pastoreo permitido, limitarlo a paddocks con pasto bajo (<10 cm) y preferiblemente al amanecer",
+            "Mantener condición corporal 4-5/9 en casos crónicos con trabajo ligero",
+            "Si hay resistencia a la insulina confirmada: NSC total de la dieta < 10%"
+          ],
+          "advertencias": [
+            "No ofrecer frutas o zanahorias como premio salvo en cantidades mínimas y ocasionales",
+            "En ponis y asnos el umbral de riesgo es más bajo que en caballos grandes"
+          ]
+        },
+        "colicos": {
+          "nombre_estado": "Cólicos",
+          "fuente": "documentado",
+          "criterio_nutricional": "Basado directamente en la sección 2 de la guía de enfermedades. Se aplica el manejo general preventivo; si se conoce el subtipo específico (impactación, gases, desplazamiento, enterolitiasis) se pueden aplicar los ajustes adicionales indicados en notas.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 387.0,
+            "ED_Mcal_dia": 19.2,
+            "PC_g_dia": 799.0,
+            "Ca_g_dia": 37.0,
+            "P_g_dia": 20.6
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 6.97,
+            "forraje_kg_ms_dia": 5.92,
+            "concentrado_kg_ms_dia": 1.05,
+            "criterio": "1.8% del peso corporal en MS/día (85% forraje / 15% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas de buena calidad, humedecido si hay antecedentes de impactación",
+            "Forraje picado o en cubos remojados si hay problemas de masticación",
+            "Mezcla gramínea + leguminosa, evitando que la alfalfa supere el 50% del forraje total (riesgo de enterolitiasis)"
+          ],
+          "forraje_evitar": [
+            "Paja como forraje principal (riesgo de impactación)",
+            "Más de 50% de alfalfa en el forraje total",
+            "Pastos frescos introducidos de forma abrupta"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas y frecuentes de concentrado de fácil digestión, fraccionadas"
+          ],
+          "concentrado_evitar": [
+            "Concentrado inmediatamente después de ejercicio intenso (esperar 30-60 min)",
+            "Cambios abruptos en tipo o cantidad de concentrado"
+          ],
+          "manejo_agua": "Acceso constante a agua fresca y limpia (mínimo 20-40 L/día en reposo, más en ejercicio o calor). Agua con bajo contenido mineral (<300 mg TDS si es posible).",
+          "suplementos": [
+            "Sal mineral siempre disponible para estimular consumo de agua",
+            "En riesgo de enterolitiasis: vinagre de manzana en agua o alimento (60-120 ml/día) y psyllium periódico"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares de alimentación; no dejar el estómago vacío más de 5 horas",
+            "Dividir el concentrado en 2-3 porciones diarias, máximo 0.5% del peso corporal por comida",
+            "Cambios de dieta siempre graduales: transición de 7-14 días",
+            "Control de parásitos como parte del manejo preventivo",
+            "Evitar forraje contaminado con hongos, tierra o arena"
+          ],
+          "advertencias": [
+            "Si hay antecedente de cólico por gases: introducir pastoreo gradualmente, máximo 15-20 min/día al inicio, y evitar pastos mojados o con rocío",
+            "Si hay antecedente de enterolitiasis confirmada: cambiar completamente a heno de gramíneas"
+          ]
+        },
+        "influenza": {
+          "nombre_estado": "Influenza equina",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO: las fuentes no incluyen una sección específica sobre influenza equina. Este perfil se construye a partir de los principios generales de soporte nutricional en enfermedad respiratoria/infecciosa presentes en la guía (sección 8, RAO/Heaves, en cuanto a antioxidantes y calidad del forraje) y de los principios NRC de mantenimiento de consumo voluntario durante enfermedad.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 387.0,
+            "ED_Mcal_dia": 19.2,
+            "PC_g_dia": 799.0,
+            "Ca_g_dia": 37.0,
+            "P_g_dia": 20.6
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 6.97,
+            "forraje_kg_ms_dia": 5.58,
+            "concentrado_kg_ms_dia": 1.39,
+            "criterio": "1.8% del peso corporal en MS/día (80% forraje / 20% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de alta calidad, bajo en polvo y hongos (igual criterio que en RAO/Heaves, por similitud de vía respiratoria)",
+            "Heno remojado 30 min antes de ofrecer para reducir polvo, si hay tos o sensibilidad respiratoria",
+            "Forraje palatable y de fácil consumo para mantener ingesta durante el periodo febril/anorexia leve"
+          ],
+          "forraje_evitar": [
+            "Heno polvoso, enmohecido o almacenado en el mismo box del caballo"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas, palatables, fáciles de masticar; concentrado remojado si hay bajo apetito"
+          ],
+          "concentrado_evitar": [
+            "Forzar grandes raciones de concentrado durante el cuadro febril/anorexia"
+          ],
+          "manejo_agua": "Agua fresca y limpia siempre disponible; vigilar consumo, ya que la fiebre puede aumentar las pérdidas hídricas (criterio inferido por analogía con manejo general de hidratación).",
+          "suplementos": [
+            "INFERIDO por analogía con el manejo de RAO: vitamina C (5-20 mg/kg/día) y vitamina E/Selenio en niveles adecuados, por su rol antioxidante e inmunomodulador",
+            "Aceites omega-3 (aceite de linaza) si hay componente inflamatorio respiratorio, por su efecto antiinflamatorio documentado en la guía para condiciones respiratorias"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares y forraje disponible para preservar consumo voluntario",
+            "Reposo del trabajo/ejercicio durante el cuadro agudo (criterio general, no nutricional)",
+            "Reintroducir gradualmente la ración completa al recuperarse el apetito"
+          ],
+          "advertencias": [
+            "INFERIDO: este perfil es soporte nutricional general y NO sustituye el diagnóstico y tratamiento veterinario (incluyendo manejo antipirético, antibiótico si hay infección secundaria, y aislamiento del caballo para control de contagio)."
+          ]
+        }
+      }
+    },
+    "adulto": {
+      "nombre": "Adulto (mantenimiento / trabajo)",
+      "descripcion": "Caballo adulto, crecimiento óseo completo. Nivel de actividad variable.",
+      "notas_nrc": "Elegir el nivel ('mantenimiento_minimo/promedio/elevado' o 'trabajo_ligero/moderado') según temperamento y carga de trabajo real del caballo, conforme a la tabla de categorías de ejercicio NRC.",
+      "perfiles_nrc_disponibles": {
+        "peso_maduro_500kg_ejemplo": {
+          "mantenimiento_minimo": {
+            "peso_actual_kg": 500.0,
+            "ED_Mcal_dia": 15.2,
+            "PC_g_dia": 540.0,
+            "Lisina_g_dia": 23.2,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0,
+            "Mg_g_dia": 7.5,
+            "K_g_dia": 25.0,
+            "Na_g_dia": 10.0,
+            "Zn_mg_dia": 400.0,
+            "Cu_mg_dia": 100.0,
+            "Se_mg_dia": 1.0,
+            "VitA_kUI_dia": 15.0,
+            "VitE_UI_dia": 500.0
+          },
+          "mantenimiento_promedio": {
+            "peso_actual_kg": 500.0,
+            "ED_Mcal_dia": 16.7,
+            "PC_g_dia": 630.0,
+            "Lisina_g_dia": 27.1,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0,
+            "Mg_g_dia": 7.5,
+            "K_g_dia": 25.0,
+            "Na_g_dia": 10.0,
+            "Zn_mg_dia": 400.0,
+            "Cu_mg_dia": 100.0,
+            "Se_mg_dia": 1.0,
+            "VitA_kUI_dia": 15.0,
+            "VitE_UI_dia": 500.0
+          },
+          "mantenimiento_elevado": {
+            "peso_actual_kg": 500.0,
+            "ED_Mcal_dia": 18.2,
+            "PC_g_dia": 720.0,
+            "Lisina_g_dia": 31.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0,
+            "Mg_g_dia": 7.5,
+            "K_g_dia": 25.0,
+            "Na_g_dia": 10.0,
+            "Zn_mg_dia": 400.0,
+            "Cu_mg_dia": 100.0,
+            "Se_mg_dia": 1.0,
+            "VitA_kUI_dia": 15.0,
+            "VitE_UI_dia": 500.0
+          },
+          "trabajo_ligero": {
+            "peso_actual_kg": 500.0,
+            "ED_Mcal_dia": 20.0,
+            "PC_g_dia": 699.0,
+            "Lisina_g_dia": 30.1,
+            "Ca_g_dia": 30.0,
+            "P_g_dia": 18.0,
+            "Mg_g_dia": 9.5,
+            "K_g_dia": 28.5,
+            "Na_g_dia": 13.9,
+            "Zn_mg_dia": 400.0,
+            "Cu_mg_dia": 100.0,
+            "Se_mg_dia": 1.0,
+            "VitA_kUI_dia": 22.5,
+            "VitE_UI_dia": 800.0
+          },
+          "trabajo_moderado": {
+            "peso_actual_kg": 500.0,
+            "ED_Mcal_dia": 23.3,
+            "PC_g_dia": 768.0,
+            "Lisina_g_dia": 33.0,
+            "Ca_g_dia": 35.0,
+            "P_g_dia": 21.0,
+            "Mg_g_dia": 11.5,
+            "K_g_dia": 32.0,
+            "Na_g_dia": 17.8,
+            "Zn_mg_dia": 450.0,
+            "Cu_mg_dia": 112.5,
+            "Se_mg_dia": 1.13,
+            "VitA_kUI_dia": 22.5,
+            "VitE_UI_dia": 900.0
+          }
+        },
+        "peso_maduro_400kg": {
+          "mantenimiento_promedio": {
+            "peso_actual_kg": 400.0,
+            "ED_Mcal_dia": 13.3,
+            "PC_g_dia": 504.0,
+            "Lisina_g_dia": 21.7,
+            "Ca_g_dia": 16.0,
+            "P_g_dia": 11.2,
+            "Mg_g_dia": 6.0,
+            "K_g_dia": 20.0,
+            "Na_g_dia": 8.0,
+            "Zn_mg_dia": 320.0,
+            "Cu_mg_dia": 80.0,
+            "Se_mg_dia": 0.8,
+            "VitA_kUI_dia": 12.0,
+            "VitE_UI_dia": 400.0
+          },
+          "trabajo_ligero": {
+            "peso_actual_kg": 400.0,
+            "ED_Mcal_dia": 16.0,
+            "PC_g_dia": 559.0,
+            "Lisina_g_dia": 24.1,
+            "Ca_g_dia": 24.0,
+            "P_g_dia": 14.4,
+            "Mg_g_dia": 7.6,
+            "K_g_dia": 22.8,
+            "Na_g_dia": 11.1,
+            "Zn_mg_dia": 320.0,
+            "Cu_mg_dia": 80.0,
+            "Se_mg_dia": 0.8,
+            "VitA_kUI_dia": 18.0,
+            "VitE_UI_dia": 640.0
+          },
+          "trabajo_moderado": {
+            "peso_actual_kg": 400.0,
+            "ED_Mcal_dia": 18.6,
+            "PC_g_dia": 614.0,
+            "Lisina_g_dia": 26.4,
+            "Ca_g_dia": 28.0,
+            "P_g_dia": 16.8,
+            "Mg_g_dia": 9.2,
+            "K_g_dia": 25.6,
+            "Na_g_dia": 14.2,
+            "Zn_mg_dia": 360.0,
+            "Cu_mg_dia": 90.0,
+            "Se_mg_dia": 0.9,
+            "VitA_kUI_dia": 18.0,
+            "VitE_UI_dia": 720.0
+          }
+        },
+        "peso_maduro_600kg": {
+          "mantenimiento_promedio": {
+            "peso_actual_kg": 600.0,
+            "ED_Mcal_dia": 20.0,
+            "PC_g_dia": 756.0,
+            "Lisina_g_dia": 32.5,
+            "Ca_g_dia": 24.0,
+            "P_g_dia": 16.8,
+            "Mg_g_dia": 9.0,
+            "K_g_dia": 30.0,
+            "Na_g_dia": 12.0,
+            "Zn_mg_dia": 480.0,
+            "Cu_mg_dia": 120.0,
+            "Se_mg_dia": 1.2,
+            "VitA_kUI_dia": 18.0,
+            "VitE_UI_dia": 600.0
+          },
+          "trabajo_ligero": {
+            "peso_actual_kg": 600.0,
+            "ED_Mcal_dia": 24.0,
+            "PC_g_dia": 839.0,
+            "Lisina_g_dia": 36.1,
+            "Ca_g_dia": 36.0,
+            "P_g_dia": 21.6,
+            "Mg_g_dia": 11.4,
+            "K_g_dia": 34.2,
+            "Na_g_dia": 16.7,
+            "Zn_mg_dia": 480.0,
+            "Cu_mg_dia": 120.0,
+            "Se_mg_dia": 1.2,
+            "VitA_kUI_dia": 27.0,
+            "VitE_UI_dia": 960.0
+          },
+          "trabajo_moderado": {
+            "peso_actual_kg": 600.0,
+            "ED_Mcal_dia": 28.0,
+            "PC_g_dia": 921.0,
+            "Lisina_g_dia": 39.6,
+            "Ca_g_dia": 42.0,
+            "P_g_dia": 25.2,
+            "Mg_g_dia": 13.8,
+            "K_g_dia": 38.4,
+            "Na_g_dia": 21.3,
+            "Zn_mg_dia": 540.0,
+            "Cu_mg_dia": 135.0,
+            "Se_mg_dia": 1.35,
+            "VitA_kUI_dia": 27.0,
+            "VitE_UI_dia": 1080.0
+          }
+        }
+      },
+      "dietas_por_estado_salud": {
+        "sin_complicaciones": {
+          "nombre_estado": "Sin complicaciones de salud",
+          "fuente": "documentado",
+          "criterio_nutricional": "Dieta estándar NRC para la categoría y nivel de actividad del caballo, sin restricciones especiales.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 500.0,
+            "ED_Mcal_dia": 15.2,
+            "PC_g_dia": 540.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 10.0,
+            "forraje_kg_ms_dia": 7.0,
+            "concentrado_kg_ms_dia": 3.0,
+            "criterio": "2.0% del peso corporal en MS/día (70% forraje / 30% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas estación fría (madurez media o inmaduro según necesidad energética)",
+            "Mezcla gramínea + leguminosa (heno, madurez media) como opción equilibrada",
+            "Alfalfa hasta 30-50% del forraje total si se requiere mayor proteína/energía (crecimiento, gestación tardía, lactancia, trabajo)"
+          ],
+          "forraje_evitar": [],
+          "concentrado_recomendado": [
+            "Avena (grano, enrollada) o cebada procesada si se requiere energía adicional para trabajo",
+            "Aceite vegetal como fuente extra de energía en trabajo pesado"
+          ],
+          "concentrado_evitar": [],
+          "manejo_agua": "Agua fresca y limpia disponible ad libitum (mínimo 20-40 L/día en reposo, más en ejercicio o calor). Sal mineral siempre disponible.",
+          "suplementos": [
+            "Sal común ad libitum",
+            "Mezcla mineral balanceada Ca:P según tabla NRC"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares de alimentación",
+            "No dejar al caballo sin forraje más de 4-5 horas",
+            "Fraccionar concentrado en 2-3 porciones/día, máximo 0.5% del peso corporal por comida",
+            "Cualquier cambio de dieta debe hacerse gradualmente en 7-14 días"
+          ],
+          "advertencias": []
+        },
+        "deshidratacion": {
+          "nombre_estado": "Deshidratación",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO a partir de los principios generales de manejo de agua del NRC (sección 8 de la guía de enfermedades) y de las pautas de prevención de cólico por impactación. Las fuentes no incluyen un protocolo clínico de rehidratación; estas son pautas nutricionales de apoyo, no un tratamiento veterinario.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 500.0,
+            "ED_Mcal_dia": 15.2,
+            "PC_g_dia": 540.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 9.0,
+            "forraje_kg_ms_dia": 7.2,
+            "concentrado_kg_ms_dia": 1.8,
+            "criterio": "1.8% del peso corporal en MS/día (80% forraje / 20% concentrado)"
+          },
+          "forraje_base": [
+            "Forraje húmedo o remojado (heno humedecido) para aumentar consumo de agua junto con la fibra",
+            "Pulpa de remolacha remojada (sin melaza): aporta agua y fibra fermentable de fácil consumo",
+            "Forraje picado o en cubos remojados si hay bajo apetito"
+          ],
+          "forraje_evitar": [
+            "Heno muy seco y grueso, paja (bajo aporte de agua, mayor riesgo de impactación)"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas, palatables y húmedas (concentrado remojado) para estimular consumo total"
+          ],
+          "concentrado_evitar": [
+            "Concentrados secos en grandes cantidades de una sola vez"
+          ],
+          "manejo_agua": "INFERIDO: priorizar el restablecimiento del consumo voluntario de agua. Agua fresca, limpia y a temperatura templada (el agua fría <10°C reduce el consumo voluntario, según la guía). Ofrecer agua con electrolitos/sal disuelta para estimular la sed, y mantener acceso constante a sal mineral para favorecer la ingesta hídrica. Vigilar producción de orina y elasticidad de piel como referencia de hidratación (criterio clínico, no nutricional).",
+          "suplementos": [
+            "Electrolitos orales (sodio, potasio, cloro) — inferido de la función de la sal común y el manejo de electrolitos en ejercicio descrito en el diccionario de forrajes",
+            "Sal común (NaCl) ad libitum o añadida al agua/alimento"
+          ],
+          "reglas_alimentacion": [
+            "Ofrecer forraje húmedo en comidas pequeñas y frecuentes",
+            "No forzar grandes raciones secas hasta confirmar consumo de agua adecuado",
+            "Evitar ejercicio o transporte hasta normalizar hidratación (criterio general, no nutricional)"
+          ],
+          "advertencias": [
+            "INFERIDO: este perfil es una guía de apoyo nutricional, no sustituye evaluación y manejo veterinario de la deshidratación, que puede requerir fluidoterapia."
+          ]
+        },
+        "desnutricion": {
+          "nombre_estado": "Desnutrición / bajo peso",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO de las pautas de dietas blandas/geriátricas y de manejo energético del documento de enfermedades (sección 3), aplicando el principio general NRC de aumentar densidad energética y proteica de forma gradual y controlada.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 500.0,
+            "ED_Mcal_dia": 15.2,
+            "PC_g_dia": 540.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 11.0,
+            "forraje_kg_ms_dia": 6.6,
+            "concentrado_kg_ms_dia": 4.4,
+            "criterio": "2.2% del peso corporal en MS/día (60% forraje / 40% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de leguminosas (inmaduro) o alfalfa: alta proteína y energía media-alta para recuperación de condición",
+            "Pastura de leguminosas si hay acceso, vigilando timpanismo",
+            "Pulpa de remolacha (con o sin melaza según sensibilidad) como fuente extra de energía fermentable"
+          ],
+          "forraje_evitar": [
+            "Paja o heno de bermuda como base exclusiva (muy bajo aporte energético y proteico)"
+          ],
+          "concentrado_recomendado": [
+            "Avena o cebada procesada como fuente de energía concentrada (si no hay sensibilidad a almidón)",
+            "Harina de soya como fuente de proteína de alta calidad",
+            "Aceite vegetal (girasol, soya, canola): energía densa sin sobrecargar almidón",
+            "Granos de cervecería secos: proteína + fibra"
+          ],
+          "concentrado_evitar": [
+            "Incrementos abruptos de concentrado (riesgo de cólico/acidosis cecal)"
+          ],
+          "manejo_agua": "Agua fresca disponible ad libitum; vigilar consumo, ya que el aumento de materia seca ingerida depende del consumo de agua.",
+          "suplementos": [
+            "Vitamina E (400-800 UI/día) y vitamina C (1-2 g/día) si hay componente geriátrico o estrés oxidativo asociado",
+            "Mezcla mineral balanceada Ca:P y oligoelementos según tabla NRC para el peso y categoría"
+          ],
+          "reglas_alimentacion": [
+            "Aumentar la ración de forma gradual en 10-14 días para evitar sobrecarga digestiva",
+            "Dividir la dieta en 3-4 porciones diarias",
+            "Revisar y reevaluar peso/condición corporal periódicamente para ajustar la ración",
+            "Priorizar siempre el forraje sobre el concentrado como base calórica"
+          ],
+          "advertencias": [
+            "Evitar realimentación demasiado agresiva en casos de desnutrición severa o prolongada (riesgo de síndrome de realimentación); este perfil es orientativo y requiere supervisión veterinaria."
+          ]
+        },
+        "laminitis": {
+          "nombre_estado": "Laminitis",
+          "fuente": "documentado",
+          "criterio_nutricional": "Basado directamente en la sección 1 de la guía de enfermedades.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 500.0,
+            "ED_Mcal_dia": 15.2,
+            "PC_g_dia": 540.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 7.5,
+            "forraje_kg_ms_dia": 7.12,
+            "concentrado_kg_ms_dia": 0.38,
+            "criterio": "1.5% del peso corporal en MS/día (95% forraje / 5% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas estación fría (maduro) con NSC < 10-12%, remojado 30-60 min en agua fría antes de ofrecer",
+            "Bermuda (heno, Coastal): bajo en NSC, adecuado para laminitis",
+            "Pulpa de remolacha sin melaza, en cantidades moderadas, como complemento de fibra",
+            "Cáscaras de soya: fibra fermentable de bajo almidón"
+          ],
+          "forraje_evitar": [
+            "Pastura fresca de gramíneas o leguminosas en crecimiento activo (alto en fructanos/NSC, especialmente primavera y otoño)",
+            "Alfalfa en alta proporción si hay sobrepeso asociado"
+          ],
+          "concentrado_recomendado": [
+            "Ninguno con almidón/azúcar; si se requiere energía extra, usar aceite vegetal en pequeñas cantidades"
+          ],
+          "concentrado_evitar": [
+            "Maíz, avena, cebada (alto NSC/almidón)",
+            "Melaza de caña o de remolacha",
+            "Cualquier suplemento con azúcar o fructooligosacáridos"
+          ],
+          "manejo_agua": "Agua limpia ad libitum; sin restricciones especiales relacionadas con laminitis.",
+          "suplementos": [
+            "Bloque de sal mineral (especialmente si la dieta es principalmente heno)"
+          ],
+          "reglas_alimentacion": [
+            "Restringir o eliminar el acceso a pasto fresco, sobre todo en primavera",
+            "Si hay pastoreo permitido, limitarlo a paddocks con pasto bajo (<10 cm) y preferiblemente al amanecer",
+            "Mantener condición corporal 4-5/9 en casos crónicos con trabajo ligero",
+            "Si hay resistencia a la insulina confirmada: NSC total de la dieta < 10%"
+          ],
+          "advertencias": [
+            "No ofrecer frutas o zanahorias como premio salvo en cantidades mínimas y ocasionales",
+            "En ponis y asnos el umbral de riesgo es más bajo que en caballos grandes"
+          ]
+        },
+        "colicos": {
+          "nombre_estado": "Cólicos",
+          "fuente": "documentado",
+          "criterio_nutricional": "Basado directamente en la sección 2 de la guía de enfermedades. Se aplica el manejo general preventivo; si se conoce el subtipo específico (impactación, gases, desplazamiento, enterolitiasis) se pueden aplicar los ajustes adicionales indicados en notas.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 500.0,
+            "ED_Mcal_dia": 15.2,
+            "PC_g_dia": 540.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 9.0,
+            "forraje_kg_ms_dia": 7.65,
+            "concentrado_kg_ms_dia": 1.35,
+            "criterio": "1.8% del peso corporal en MS/día (85% forraje / 15% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas de buena calidad, humedecido si hay antecedentes de impactación",
+            "Forraje picado o en cubos remojados si hay problemas de masticación",
+            "Mezcla gramínea + leguminosa, evitando que la alfalfa supere el 50% del forraje total (riesgo de enterolitiasis)"
+          ],
+          "forraje_evitar": [
+            "Paja como forraje principal (riesgo de impactación)",
+            "Más de 50% de alfalfa en el forraje total",
+            "Pastos frescos introducidos de forma abrupta"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas y frecuentes de concentrado de fácil digestión, fraccionadas"
+          ],
+          "concentrado_evitar": [
+            "Concentrado inmediatamente después de ejercicio intenso (esperar 30-60 min)",
+            "Cambios abruptos en tipo o cantidad de concentrado"
+          ],
+          "manejo_agua": "Acceso constante a agua fresca y limpia (mínimo 20-40 L/día en reposo, más en ejercicio o calor). Agua con bajo contenido mineral (<300 mg TDS si es posible).",
+          "suplementos": [
+            "Sal mineral siempre disponible para estimular consumo de agua",
+            "En riesgo de enterolitiasis: vinagre de manzana en agua o alimento (60-120 ml/día) y psyllium periódico"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares de alimentación; no dejar el estómago vacío más de 5 horas",
+            "Dividir el concentrado en 2-3 porciones diarias, máximo 0.5% del peso corporal por comida",
+            "Cambios de dieta siempre graduales: transición de 7-14 días",
+            "Control de parásitos como parte del manejo preventivo",
+            "Evitar forraje contaminado con hongos, tierra o arena"
+          ],
+          "advertencias": [
+            "Si hay antecedente de cólico por gases: introducir pastoreo gradualmente, máximo 15-20 min/día al inicio, y evitar pastos mojados o con rocío",
+            "Si hay antecedente de enterolitiasis confirmada: cambiar completamente a heno de gramíneas"
+          ]
+        },
+        "influenza": {
+          "nombre_estado": "Influenza equina",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO: las fuentes no incluyen una sección específica sobre influenza equina. Este perfil se construye a partir de los principios generales de soporte nutricional en enfermedad respiratoria/infecciosa presentes en la guía (sección 8, RAO/Heaves, en cuanto a antioxidantes y calidad del forraje) y de los principios NRC de mantenimiento de consumo voluntario durante enfermedad.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 500.0,
+            "ED_Mcal_dia": 15.2,
+            "PC_g_dia": 540.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 9.0,
+            "forraje_kg_ms_dia": 7.2,
+            "concentrado_kg_ms_dia": 1.8,
+            "criterio": "1.8% del peso corporal en MS/día (80% forraje / 20% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de alta calidad, bajo en polvo y hongos (igual criterio que en RAO/Heaves, por similitud de vía respiratoria)",
+            "Heno remojado 30 min antes de ofrecer para reducir polvo, si hay tos o sensibilidad respiratoria",
+            "Forraje palatable y de fácil consumo para mantener ingesta durante el periodo febril/anorexia leve"
+          ],
+          "forraje_evitar": [
+            "Heno polvoso, enmohecido o almacenado en el mismo box del caballo"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas, palatables, fáciles de masticar; concentrado remojado si hay bajo apetito"
+          ],
+          "concentrado_evitar": [
+            "Forzar grandes raciones de concentrado durante el cuadro febril/anorexia"
+          ],
+          "manejo_agua": "Agua fresca y limpia siempre disponible; vigilar consumo, ya que la fiebre puede aumentar las pérdidas hídricas (criterio inferido por analogía con manejo general de hidratación).",
+          "suplementos": [
+            "INFERIDO por analogía con el manejo de RAO: vitamina C (5-20 mg/kg/día) y vitamina E/Selenio en niveles adecuados, por su rol antioxidante e inmunomodulador",
+            "Aceites omega-3 (aceite de linaza) si hay componente inflamatorio respiratorio, por su efecto antiinflamatorio documentado en la guía para condiciones respiratorias"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares y forraje disponible para preservar consumo voluntario",
+            "Reposo del trabajo/ejercicio durante el cuadro agudo (criterio general, no nutricional)",
+            "Reintroducir gradualmente la ración completa al recuperarse el apetito"
+          ],
+          "advertencias": [
+            "INFERIDO: este perfil es soporte nutricional general y NO sustituye el diagnóstico y tratamiento veterinario (incluyendo manejo antipirético, antibiótico si hay infección secundaria, y aislamiento del caballo para control de contagio)."
+          ]
+        }
+      }
+    },
+    "yegua_gestante": {
+      "nombre": "Yegua gestante",
+      "descripcion": "Hembra en gestación. Requerimientos aumentan notablemente desde el mes 7 (gestación tardía).",
+      "notas_nrc": "Gestación temprana (<5 meses): requerimientos similares a mantenimiento. Desde el mes 7, aumentan energía, proteína, calcio y fósforo de forma progresiva. Evitar restricción energética (riesgo de hiperlipiemia) y evitar sobrealimentación (riesgo de potro grande / distocia).",
+      "perfiles_nrc_disponibles": {
+        "peso_maduro_500kg_ejemplo": {
+          "temprana_menos5meses": {
+            "peso_actual_kg": 500.0,
+            "ED_Mcal_dia": 16.7,
+            "PC_g_dia": 630.0,
+            "Lisina_g_dia": 27.1,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0,
+            "Mg_g_dia": 7.5,
+            "K_g_dia": 25.0,
+            "Na_g_dia": 10.0,
+            "Zn_mg_dia": 400.0,
+            "Cu_mg_dia": 100.0,
+            "Se_mg_dia": 1.0,
+            "VitA_kUI_dia": 30.0,
+            "VitE_UI_dia": 800.0
+          },
+          "mes7": {
+            "peso_actual_kg": 515.0,
+            "ED_Mcal_dia": 17.9,
+            "PC_g_dia": 729.0,
+            "Lisina_g_dia": 31.3,
+            "Ca_g_dia": 28.0,
+            "P_g_dia": 20.0,
+            "Mg_g_dia": 7.6,
+            "K_g_dia": 25.0,
+            "Na_g_dia": 10.0,
+            "Zn_mg_dia": 400.0,
+            "Cu_mg_dia": 100.0,
+            "Se_mg_dia": 1.0,
+            "VitA_kUI_dia": 30.0,
+            "VitE_UI_dia": 800.0
+          },
+          "mes9": {
+            "peso_actual_kg": 534.0,
+            "ED_Mcal_dia": 19.2,
+            "PC_g_dia": 797.0,
+            "Lisina_g_dia": 34.3,
+            "Ca_g_dia": 36.0,
+            "P_g_dia": 26.3,
+            "Mg_g_dia": 7.7,
+            "K_g_dia": 25.9,
+            "Na_g_dia": 11.0,
+            "Zn_mg_dia": 400.0,
+            "Cu_mg_dia": 125.0,
+            "Se_mg_dia": 1.0,
+            "VitA_kUI_dia": 30.0,
+            "VitE_UI_dia": 800.0
+          },
+          "mes11": {
+            "peso_actual_kg": 566.0,
+            "ED_Mcal_dia": 21.4,
+            "PC_g_dia": 893.0,
+            "Lisina_g_dia": 38.4,
+            "Ca_g_dia": 36.0,
+            "P_g_dia": 26.3,
+            "Mg_g_dia": 7.7,
+            "K_g_dia": 25.9,
+            "Na_g_dia": 11.0,
+            "Zn_mg_dia": 400.0,
+            "Cu_mg_dia": 125.0,
+            "Se_mg_dia": 1.0,
+            "VitA_kUI_dia": 30.0,
+            "VitE_UI_dia": 800.0
+          }
+        },
+        "peso_maduro_400kg": {
+          "temprana_menos5meses": {
+            "peso_actual_kg": 400.0,
+            "ED_Mcal_dia": 13.3,
+            "PC_g_dia": 504.0,
+            "Lisina_g_dia": 21.7,
+            "Ca_g_dia": 16.0,
+            "P_g_dia": 11.2,
+            "Mg_g_dia": 6.0,
+            "K_g_dia": 20.0,
+            "Na_g_dia": 8.0,
+            "Zn_mg_dia": 320.0,
+            "Cu_mg_dia": 80.0,
+            "Se_mg_dia": 0.8,
+            "VitA_kUI_dia": 24.0,
+            "VitE_UI_dia": 640.0
+          },
+          "mes7": {
+            "peso_actual_kg": 412.0,
+            "ED_Mcal_dia": 14.3,
+            "PC_g_dia": 583.0,
+            "Lisina_g_dia": 25.1,
+            "Ca_g_dia": 22.4,
+            "P_g_dia": 16.0,
+            "Mg_g_dia": 6.1,
+            "K_g_dia": 20.0,
+            "Na_g_dia": 8.0,
+            "Zn_mg_dia": 320.0,
+            "Cu_mg_dia": 80.0,
+            "Se_mg_dia": 0.8,
+            "VitA_kUI_dia": 24.0,
+            "VitE_UI_dia": 640.0
+          },
+          "mes9": {
+            "peso_actual_kg": 427.0,
+            "ED_Mcal_dia": 15.4,
+            "PC_g_dia": 637.0,
+            "Lisina_g_dia": 27.4,
+            "Ca_g_dia": 28.8,
+            "P_g_dia": 21.0,
+            "Mg_g_dia": 6.1,
+            "K_g_dia": 20.7,
+            "Na_g_dia": 8.8,
+            "Zn_mg_dia": 320.0,
+            "Cu_mg_dia": 100.0,
+            "Se_mg_dia": 0.8,
+            "VitA_kUI_dia": 24.0,
+            "VitE_UI_dia": 640.0
+          },
+          "mes11": {
+            "peso_actual_kg": 453.0,
+            "ED_Mcal_dia": 17.1,
+            "PC_g_dia": 714.0,
+            "Lisina_g_dia": 30.7,
+            "Ca_g_dia": 28.8,
+            "P_g_dia": 21.0,
+            "Mg_g_dia": 6.1,
+            "K_g_dia": 20.7,
+            "Na_g_dia": 8.8,
+            "Zn_mg_dia": 320.0,
+            "Cu_mg_dia": 100.0,
+            "Se_mg_dia": 0.8,
+            "VitA_kUI_dia": 24.0,
+            "VitE_UI_dia": 640.0
+          }
+        },
+        "peso_maduro_600kg": {
+          "temprana_menos5meses": {
+            "peso_actual_kg": 600.0,
+            "ED_Mcal_dia": 20.0,
+            "PC_g_dia": 756.0,
+            "Lisina_g_dia": 32.5,
+            "Ca_g_dia": 24.0,
+            "P_g_dia": 16.8,
+            "Mg_g_dia": 9.0,
+            "K_g_dia": 30.0,
+            "Na_g_dia": 12.0,
+            "Zn_mg_dia": 480.0,
+            "Cu_mg_dia": 120.0,
+            "Se_mg_dia": 1.2,
+            "VitA_kUI_dia": 36.0,
+            "VitE_UI_dia": 960.0
+          },
+          "mes9": {
+            "peso_actual_kg": 641.0,
+            "ED_Mcal_dia": 23.1,
+            "PC_g_dia": 956.0,
+            "Lisina_g_dia": 41.1,
+            "Ca_g_dia": 43.2,
+            "P_g_dia": 31.5,
+            "Mg_g_dia": 9.2,
+            "K_g_dia": 31.0,
+            "Na_g_dia": 13.2,
+            "Zn_mg_dia": 480.0,
+            "Cu_mg_dia": 150.0,
+            "Se_mg_dia": 1.2,
+            "VitA_kUI_dia": 36.0,
+            "VitE_UI_dia": 960.0
+          },
+          "mes11": {
+            "peso_actual_kg": 679.0,
+            "ED_Mcal_dia": 25.7,
+            "PC_g_dia": 1072.0,
+            "Lisina_g_dia": 46.1,
+            "Ca_g_dia": 43.2,
+            "P_g_dia": 31.5,
+            "Mg_g_dia": 9.2,
+            "K_g_dia": 31.0,
+            "Na_g_dia": 13.2,
+            "Zn_mg_dia": 480.0,
+            "Cu_mg_dia": 150.0,
+            "Se_mg_dia": 1.2,
+            "VitA_kUI_dia": 36.0,
+            "VitE_UI_dia": 960.0
+          }
+        }
+      },
+      "dietas_por_estado_salud": {
+        "sin_complicaciones": {
+          "nombre_estado": "Sin complicaciones de salud",
+          "fuente": "documentado",
+          "criterio_nutricional": "Dieta estándar NRC para la categoría y nivel de actividad del caballo, sin restricciones especiales.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 500.0,
+            "ED_Mcal_dia": 16.7,
+            "PC_g_dia": 630.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 10.0,
+            "forraje_kg_ms_dia": 7.0,
+            "concentrado_kg_ms_dia": 3.0,
+            "criterio": "2.0% del peso corporal en MS/día (70% forraje / 30% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas estación fría (madurez media o inmaduro según necesidad energética)",
+            "Mezcla gramínea + leguminosa (heno, madurez media) como opción equilibrada",
+            "Alfalfa hasta 30-50% del forraje total si se requiere mayor proteína/energía (crecimiento, gestación tardía, lactancia, trabajo)"
+          ],
+          "forraje_evitar": [],
+          "concentrado_recomendado": [
+            "Avena (grano, enrollada) o cebada procesada si se requiere energía adicional para trabajo",
+            "Aceite vegetal como fuente extra de energía en trabajo pesado"
+          ],
+          "concentrado_evitar": [],
+          "manejo_agua": "Agua fresca y limpia disponible ad libitum (mínimo 20-40 L/día en reposo, más en ejercicio o calor). Sal mineral siempre disponible.",
+          "suplementos": [
+            "Sal común ad libitum",
+            "Mezcla mineral balanceada Ca:P según tabla NRC"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares de alimentación",
+            "No dejar al caballo sin forraje más de 4-5 horas",
+            "Fraccionar concentrado en 2-3 porciones/día, máximo 0.5% del peso corporal por comida",
+            "Cualquier cambio de dieta debe hacerse gradualmente en 7-14 días"
+          ],
+          "advertencias": []
+        },
+        "deshidratacion": {
+          "nombre_estado": "Deshidratación",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO a partir de los principios generales de manejo de agua del NRC (sección 8 de la guía de enfermedades) y de las pautas de prevención de cólico por impactación. Las fuentes no incluyen un protocolo clínico de rehidratación; estas son pautas nutricionales de apoyo, no un tratamiento veterinario.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 500.0,
+            "ED_Mcal_dia": 16.7,
+            "PC_g_dia": 630.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 9.0,
+            "forraje_kg_ms_dia": 7.2,
+            "concentrado_kg_ms_dia": 1.8,
+            "criterio": "1.8% del peso corporal en MS/día (80% forraje / 20% concentrado)"
+          },
+          "forraje_base": [
+            "Forraje húmedo o remojado (heno humedecido) para aumentar consumo de agua junto con la fibra",
+            "Pulpa de remolacha remojada (sin melaza): aporta agua y fibra fermentable de fácil consumo",
+            "Forraje picado o en cubos remojados si hay bajo apetito"
+          ],
+          "forraje_evitar": [
+            "Heno muy seco y grueso, paja (bajo aporte de agua, mayor riesgo de impactación)"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas, palatables y húmedas (concentrado remojado) para estimular consumo total"
+          ],
+          "concentrado_evitar": [
+            "Concentrados secos en grandes cantidades de una sola vez"
+          ],
+          "manejo_agua": "INFERIDO: priorizar el restablecimiento del consumo voluntario de agua. Agua fresca, limpia y a temperatura templada (el agua fría <10°C reduce el consumo voluntario, según la guía). Ofrecer agua con electrolitos/sal disuelta para estimular la sed, y mantener acceso constante a sal mineral para favorecer la ingesta hídrica. Vigilar producción de orina y elasticidad de piel como referencia de hidratación (criterio clínico, no nutricional).",
+          "suplementos": [
+            "Electrolitos orales (sodio, potasio, cloro) — inferido de la función de la sal común y el manejo de electrolitos en ejercicio descrito en el diccionario de forrajes",
+            "Sal común (NaCl) ad libitum o añadida al agua/alimento"
+          ],
+          "reglas_alimentacion": [
+            "Ofrecer forraje húmedo en comidas pequeñas y frecuentes",
+            "No forzar grandes raciones secas hasta confirmar consumo de agua adecuado",
+            "Evitar ejercicio o transporte hasta normalizar hidratación (criterio general, no nutricional)"
+          ],
+          "advertencias": [
+            "INFERIDO: este perfil es una guía de apoyo nutricional, no sustituye evaluación y manejo veterinario de la deshidratación, que puede requerir fluidoterapia."
+          ]
+        },
+        "desnutricion": {
+          "nombre_estado": "Desnutrición / bajo peso",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO de las pautas de dietas blandas/geriátricas y de manejo energético del documento de enfermedades (sección 3), aplicando el principio general NRC de aumentar densidad energética y proteica de forma gradual y controlada.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 500.0,
+            "ED_Mcal_dia": 16.7,
+            "PC_g_dia": 630.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 11.0,
+            "forraje_kg_ms_dia": 6.6,
+            "concentrado_kg_ms_dia": 4.4,
+            "criterio": "2.2% del peso corporal en MS/día (60% forraje / 40% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de leguminosas (inmaduro) o alfalfa: alta proteína y energía media-alta para recuperación de condición",
+            "Pastura de leguminosas si hay acceso, vigilando timpanismo",
+            "Pulpa de remolacha (con o sin melaza según sensibilidad) como fuente extra de energía fermentable"
+          ],
+          "forraje_evitar": [
+            "Paja o heno de bermuda como base exclusiva (muy bajo aporte energético y proteico)"
+          ],
+          "concentrado_recomendado": [
+            "Avena o cebada procesada como fuente de energía concentrada (si no hay sensibilidad a almidón)",
+            "Harina de soya como fuente de proteína de alta calidad",
+            "Aceite vegetal (girasol, soya, canola): energía densa sin sobrecargar almidón",
+            "Granos de cervecería secos: proteína + fibra"
+          ],
+          "concentrado_evitar": [
+            "Incrementos abruptos de concentrado (riesgo de cólico/acidosis cecal)"
+          ],
+          "manejo_agua": "Agua fresca disponible ad libitum; vigilar consumo, ya que el aumento de materia seca ingerida depende del consumo de agua.",
+          "suplementos": [
+            "Vitamina E (400-800 UI/día) y vitamina C (1-2 g/día) si hay componente geriátrico o estrés oxidativo asociado",
+            "Mezcla mineral balanceada Ca:P y oligoelementos según tabla NRC para el peso y categoría"
+          ],
+          "reglas_alimentacion": [
+            "Aumentar la ración de forma gradual en 10-14 días para evitar sobrecarga digestiva",
+            "Dividir la dieta en 3-4 porciones diarias",
+            "Revisar y reevaluar peso/condición corporal periódicamente para ajustar la ración",
+            "Priorizar siempre el forraje sobre el concentrado como base calórica"
+          ],
+          "advertencias": [
+            "Evitar realimentación demasiado agresiva en casos de desnutrición severa o prolongada (riesgo de síndrome de realimentación); este perfil es orientativo y requiere supervisión veterinaria."
+          ]
+        },
+        "laminitis": {
+          "nombre_estado": "Laminitis",
+          "fuente": "documentado",
+          "criterio_nutricional": "Basado directamente en la sección 1 de la guía de enfermedades.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 500.0,
+            "ED_Mcal_dia": 16.7,
+            "PC_g_dia": 630.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 7.5,
+            "forraje_kg_ms_dia": 7.12,
+            "concentrado_kg_ms_dia": 0.38,
+            "criterio": "1.5% del peso corporal en MS/día (95% forraje / 5% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas estación fría (maduro) con NSC < 10-12%, remojado 30-60 min en agua fría antes de ofrecer",
+            "Bermuda (heno, Coastal): bajo en NSC, adecuado para laminitis",
+            "Pulpa de remolacha sin melaza, en cantidades moderadas, como complemento de fibra",
+            "Cáscaras de soya: fibra fermentable de bajo almidón"
+          ],
+          "forraje_evitar": [
+            "Pastura fresca de gramíneas o leguminosas en crecimiento activo (alto en fructanos/NSC, especialmente primavera y otoño)",
+            "Alfalfa en alta proporción si hay sobrepeso asociado"
+          ],
+          "concentrado_recomendado": [
+            "Ninguno con almidón/azúcar; si se requiere energía extra, usar aceite vegetal en pequeñas cantidades"
+          ],
+          "concentrado_evitar": [
+            "Maíz, avena, cebada (alto NSC/almidón)",
+            "Melaza de caña o de remolacha",
+            "Cualquier suplemento con azúcar o fructooligosacáridos"
+          ],
+          "manejo_agua": "Agua limpia ad libitum; sin restricciones especiales relacionadas con laminitis.",
+          "suplementos": [
+            "Bloque de sal mineral (especialmente si la dieta es principalmente heno)"
+          ],
+          "reglas_alimentacion": [
+            "Restringir o eliminar el acceso a pasto fresco, sobre todo en primavera",
+            "Si hay pastoreo permitido, limitarlo a paddocks con pasto bajo (<10 cm) y preferiblemente al amanecer",
+            "Mantener condición corporal 4-5/9 en casos crónicos con trabajo ligero",
+            "Si hay resistencia a la insulina confirmada: NSC total de la dieta < 10%"
+          ],
+          "advertencias": [
+            "No ofrecer frutas o zanahorias como premio salvo en cantidades mínimas y ocasionales",
+            "En ponis y asnos el umbral de riesgo es más bajo que en caballos grandes"
+          ]
+        },
+        "colicos": {
+          "nombre_estado": "Cólicos",
+          "fuente": "documentado",
+          "criterio_nutricional": "Basado directamente en la sección 2 de la guía de enfermedades. Se aplica el manejo general preventivo; si se conoce el subtipo específico (impactación, gases, desplazamiento, enterolitiasis) se pueden aplicar los ajustes adicionales indicados en notas.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 500.0,
+            "ED_Mcal_dia": 16.7,
+            "PC_g_dia": 630.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 9.0,
+            "forraje_kg_ms_dia": 7.65,
+            "concentrado_kg_ms_dia": 1.35,
+            "criterio": "1.8% del peso corporal en MS/día (85% forraje / 15% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas de buena calidad, humedecido si hay antecedentes de impactación",
+            "Forraje picado o en cubos remojados si hay problemas de masticación",
+            "Mezcla gramínea + leguminosa, evitando que la alfalfa supere el 50% del forraje total (riesgo de enterolitiasis)"
+          ],
+          "forraje_evitar": [
+            "Paja como forraje principal (riesgo de impactación)",
+            "Más de 50% de alfalfa en el forraje total",
+            "Pastos frescos introducidos de forma abrupta"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas y frecuentes de concentrado de fácil digestión, fraccionadas"
+          ],
+          "concentrado_evitar": [
+            "Concentrado inmediatamente después de ejercicio intenso (esperar 30-60 min)",
+            "Cambios abruptos en tipo o cantidad de concentrado"
+          ],
+          "manejo_agua": "Acceso constante a agua fresca y limpia (mínimo 20-40 L/día en reposo, más en ejercicio o calor). Agua con bajo contenido mineral (<300 mg TDS si es posible).",
+          "suplementos": [
+            "Sal mineral siempre disponible para estimular consumo de agua",
+            "En riesgo de enterolitiasis: vinagre de manzana en agua o alimento (60-120 ml/día) y psyllium periódico"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares de alimentación; no dejar el estómago vacío más de 5 horas",
+            "Dividir el concentrado en 2-3 porciones diarias, máximo 0.5% del peso corporal por comida",
+            "Cambios de dieta siempre graduales: transición de 7-14 días",
+            "Control de parásitos como parte del manejo preventivo",
+            "Evitar forraje contaminado con hongos, tierra o arena"
+          ],
+          "advertencias": [
+            "Si hay antecedente de cólico por gases: introducir pastoreo gradualmente, máximo 15-20 min/día al inicio, y evitar pastos mojados o con rocío",
+            "Si hay antecedente de enterolitiasis confirmada: cambiar completamente a heno de gramíneas"
+          ]
+        },
+        "influenza": {
+          "nombre_estado": "Influenza equina",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO: las fuentes no incluyen una sección específica sobre influenza equina. Este perfil se construye a partir de los principios generales de soporte nutricional en enfermedad respiratoria/infecciosa presentes en la guía (sección 8, RAO/Heaves, en cuanto a antioxidantes y calidad del forraje) y de los principios NRC de mantenimiento de consumo voluntario durante enfermedad.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 500.0,
+            "ED_Mcal_dia": 16.7,
+            "PC_g_dia": 630.0,
+            "Ca_g_dia": 20.0,
+            "P_g_dia": 14.0
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 9.0,
+            "forraje_kg_ms_dia": 7.2,
+            "concentrado_kg_ms_dia": 1.8,
+            "criterio": "1.8% del peso corporal en MS/día (80% forraje / 20% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de alta calidad, bajo en polvo y hongos (igual criterio que en RAO/Heaves, por similitud de vía respiratoria)",
+            "Heno remojado 30 min antes de ofrecer para reducir polvo, si hay tos o sensibilidad respiratoria",
+            "Forraje palatable y de fácil consumo para mantener ingesta durante el periodo febril/anorexia leve"
+          ],
+          "forraje_evitar": [
+            "Heno polvoso, enmohecido o almacenado en el mismo box del caballo"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas, palatables, fáciles de masticar; concentrado remojado si hay bajo apetito"
+          ],
+          "concentrado_evitar": [
+            "Forzar grandes raciones de concentrado durante el cuadro febril/anorexia"
+          ],
+          "manejo_agua": "Agua fresca y limpia siempre disponible; vigilar consumo, ya que la fiebre puede aumentar las pérdidas hídricas (criterio inferido por analogía con manejo general de hidratación).",
+          "suplementos": [
+            "INFERIDO por analogía con el manejo de RAO: vitamina C (5-20 mg/kg/día) y vitamina E/Selenio en niveles adecuados, por su rol antioxidante e inmunomodulador",
+            "Aceites omega-3 (aceite de linaza) si hay componente inflamatorio respiratorio, por su efecto antiinflamatorio documentado en la guía para condiciones respiratorias"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares y forraje disponible para preservar consumo voluntario",
+            "Reposo del trabajo/ejercicio durante el cuadro agudo (criterio general, no nutricional)",
+            "Reintroducir gradualmente la ración completa al recuperarse el apetito"
+          ],
+          "advertencias": [
+            "INFERIDO: este perfil es soporte nutricional general y NO sustituye el diagnóstico y tratamiento veterinario (incluyendo manejo antipirético, antibiótico si hay infección secundaria, y aislamiento del caballo para control de contagio)."
+          ]
+        }
+      }
+    },
+    "caballo_tiro": {
+      "nombre": "Caballo de tiro / trabajo pesado",
+      "descripcion": "Caballo dedicado a trabajo de tiro o tracción, ejercicio pesado a muy pesado, generalmente de mayor peso maduro (razas pesadas).",
+      "notas_nrc": "Razas de tiro (percherón, belga, etc.) suelen tener peso maduro 600-900+ kg. Atención especial a PSSM/EPSSM (frecuente en belgas y percherones): si el caballo es susceptible, preferir el perfil de dieta de PSSM (ver notas de estado de salud) incluso en 'sin_complicaciones'.",
+      "perfiles_nrc_disponibles": {
+        "peso_maduro_600kg_ejemplo": {
+          "trabajo_pesado": {
+            "peso_actual_kg": 600.0,
+            "ED_Mcal_dia": 32.0,
+            "PC_g_dia": 1034.0,
+            "Lisina_g_dia": 44.5,
+            "Ca_g_dia": 48.0,
+            "P_g_dia": 34.8,
+            "Mg_g_dia": 18.0,
+            "K_g_dia": 46.8,
+            "Na_g_dia": 30.6,
+            "Zn_mg_dia": 600.0,
+            "Cu_mg_dia": 150.0,
+            "Se_mg_dia": 1.5,
+            "VitA_kUI_dia": 27.0,
+            "VitE_UI_dia": 1200.0
+          },
+          "trabajo_muy_pesado": {
+            "peso_actual_kg": 600.0,
+            "ED_Mcal_dia": 41.4,
+            "PC_g_dia": 1205.0,
+            "Lisina_g_dia": 51.8,
+            "Ca_g_dia": 48.0,
+            "P_g_dia": 34.8,
+            "Mg_g_dia": 18.0,
+            "K_g_dia": 63.6,
+            "Na_g_dia": 49.2,
+            "Zn_mg_dia": 600.0,
+            "Cu_mg_dia": 150.0,
+            "Se_mg_dia": 1.5,
+            "VitA_kUI_dia": 27.0,
+            "VitE_UI_dia": 1200.0
+          }
+        },
+        "peso_maduro_900kg": {
+          "trabajo_pesado": {
+            "peso_actual_kg": 900.0,
+            "ED_Mcal_dia": 48.0,
+            "PC_g_dia": 1551.0,
+            "Lisina_g_dia": 66.7,
+            "Ca_g_dia": 72.0,
+            "P_g_dia": 52.2,
+            "Mg_g_dia": 27.0,
+            "K_g_dia": 70.2,
+            "Na_g_dia": 45.9,
+            "Zn_mg_dia": 900.0,
+            "Cu_mg_dia": 225.0,
+            "Se_mg_dia": 2.25,
+            "VitA_kUI_dia": 40.5,
+            "VitE_UI_dia": 1800.0
+          },
+          "trabajo_muy_pesado": {
+            "peso_actual_kg": 900.0,
+            "ED_Mcal_dia": 62.1,
+            "PC_g_dia": 1808.0,
+            "Lisina_g_dia": 77.7,
+            "Ca_g_dia": 72.0,
+            "P_g_dia": 52.2,
+            "Mg_g_dia": 27.0,
+            "K_g_dia": 95.4,
+            "Na_g_dia": 73.8,
+            "Zn_mg_dia": 900.0,
+            "Cu_mg_dia": 225.0,
+            "Se_mg_dia": 2.25,
+            "VitA_kUI_dia": 40.5,
+            "VitE_UI_dia": 1800.0
+          }
+        },
+        "peso_maduro_500kg": {
+          "trabajo_pesado": {
+            "peso_actual_kg": 500.0,
+            "ED_Mcal_dia": 26.6,
+            "PC_g_dia": 862.0,
+            "Lisina_g_dia": 37.1,
+            "Ca_g_dia": 40.0,
+            "P_g_dia": 29.0,
+            "Mg_g_dia": 15.0,
+            "K_g_dia": 39.0,
+            "Na_g_dia": 25.5,
+            "Zn_mg_dia": 500.0,
+            "Cu_mg_dia": 125.0,
+            "Se_mg_dia": 1.25,
+            "VitA_kUI_dia": 22.5,
+            "VitE_UI_dia": 1000.0
+          },
+          "trabajo_muy_pesado": {
+            "peso_actual_kg": 500.0,
+            "ED_Mcal_dia": 34.5,
+            "PC_g_dia": 1004.0,
+            "Lisina_g_dia": 43.2,
+            "Ca_g_dia": 40.0,
+            "P_g_dia": 29.0,
+            "Mg_g_dia": 15.0,
+            "K_g_dia": 53.0,
+            "Na_g_dia": 41.0,
+            "Zn_mg_dia": 500.0,
+            "Cu_mg_dia": 125.0,
+            "Se_mg_dia": 1.25,
+            "VitA_kUI_dia": 22.5,
+            "VitE_UI_dia": 1000.0
+          }
+        }
+      },
+      "dietas_por_estado_salud": {
+        "sin_complicaciones": {
+          "nombre_estado": "Sin complicaciones de salud",
+          "fuente": "documentado",
+          "criterio_nutricional": "Dieta estándar NRC para la categoría y nivel de actividad del caballo, sin restricciones especiales.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 600.0,
+            "ED_Mcal_dia": 32.0,
+            "PC_g_dia": 1034.0,
+            "Ca_g_dia": 48.0,
+            "P_g_dia": 34.8
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 12.0,
+            "forraje_kg_ms_dia": 8.4,
+            "concentrado_kg_ms_dia": 3.6,
+            "criterio": "2.0% del peso corporal en MS/día (70% forraje / 30% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas estación fría (madurez media o inmaduro según necesidad energética)",
+            "Mezcla gramínea + leguminosa (heno, madurez media) como opción equilibrada",
+            "Alfalfa hasta 30-50% del forraje total si se requiere mayor proteína/energía (crecimiento, gestación tardía, lactancia, trabajo)"
+          ],
+          "forraje_evitar": [],
+          "concentrado_recomendado": [
+            "Avena (grano, enrollada) o cebada procesada si se requiere energía adicional para trabajo",
+            "Aceite vegetal como fuente extra de energía en trabajo pesado"
+          ],
+          "concentrado_evitar": [],
+          "manejo_agua": "Agua fresca y limpia disponible ad libitum (mínimo 20-40 L/día en reposo, más en ejercicio o calor). Sal mineral siempre disponible.",
+          "suplementos": [
+            "Sal común ad libitum",
+            "Mezcla mineral balanceada Ca:P según tabla NRC"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares de alimentación",
+            "No dejar al caballo sin forraje más de 4-5 horas",
+            "Fraccionar concentrado en 2-3 porciones/día, máximo 0.5% del peso corporal por comida",
+            "Cualquier cambio de dieta debe hacerse gradualmente en 7-14 días"
+          ],
+          "advertencias": []
+        },
+        "deshidratacion": {
+          "nombre_estado": "Deshidratación",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO a partir de los principios generales de manejo de agua del NRC (sección 8 de la guía de enfermedades) y de las pautas de prevención de cólico por impactación. Las fuentes no incluyen un protocolo clínico de rehidratación; estas son pautas nutricionales de apoyo, no un tratamiento veterinario.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 600.0,
+            "ED_Mcal_dia": 32.0,
+            "PC_g_dia": 1034.0,
+            "Ca_g_dia": 48.0,
+            "P_g_dia": 34.8
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 10.8,
+            "forraje_kg_ms_dia": 8.64,
+            "concentrado_kg_ms_dia": 2.16,
+            "criterio": "1.8% del peso corporal en MS/día (80% forraje / 20% concentrado)"
+          },
+          "forraje_base": [
+            "Forraje húmedo o remojado (heno humedecido) para aumentar consumo de agua junto con la fibra",
+            "Pulpa de remolacha remojada (sin melaza): aporta agua y fibra fermentable de fácil consumo",
+            "Forraje picado o en cubos remojados si hay bajo apetito"
+          ],
+          "forraje_evitar": [
+            "Heno muy seco y grueso, paja (bajo aporte de agua, mayor riesgo de impactación)"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas, palatables y húmedas (concentrado remojado) para estimular consumo total"
+          ],
+          "concentrado_evitar": [
+            "Concentrados secos en grandes cantidades de una sola vez"
+          ],
+          "manejo_agua": "INFERIDO: priorizar el restablecimiento del consumo voluntario de agua. Agua fresca, limpia y a temperatura templada (el agua fría <10°C reduce el consumo voluntario, según la guía). Ofrecer agua con electrolitos/sal disuelta para estimular la sed, y mantener acceso constante a sal mineral para favorecer la ingesta hídrica. Vigilar producción de orina y elasticidad de piel como referencia de hidratación (criterio clínico, no nutricional).",
+          "suplementos": [
+            "Electrolitos orales (sodio, potasio, cloro) — inferido de la función de la sal común y el manejo de electrolitos en ejercicio descrito en el diccionario de forrajes",
+            "Sal común (NaCl) ad libitum o añadida al agua/alimento"
+          ],
+          "reglas_alimentacion": [
+            "Ofrecer forraje húmedo en comidas pequeñas y frecuentes",
+            "No forzar grandes raciones secas hasta confirmar consumo de agua adecuado",
+            "Evitar ejercicio o transporte hasta normalizar hidratación (criterio general, no nutricional)"
+          ],
+          "advertencias": [
+            "INFERIDO: este perfil es una guía de apoyo nutricional, no sustituye evaluación y manejo veterinario de la deshidratación, que puede requerir fluidoterapia."
+          ]
+        },
+        "desnutricion": {
+          "nombre_estado": "Desnutrición / bajo peso",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO de las pautas de dietas blandas/geriátricas y de manejo energético del documento de enfermedades (sección 3), aplicando el principio general NRC de aumentar densidad energética y proteica de forma gradual y controlada.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 600.0,
+            "ED_Mcal_dia": 32.0,
+            "PC_g_dia": 1034.0,
+            "Ca_g_dia": 48.0,
+            "P_g_dia": 34.8
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 13.2,
+            "forraje_kg_ms_dia": 7.92,
+            "concentrado_kg_ms_dia": 5.28,
+            "criterio": "2.2% del peso corporal en MS/día (60% forraje / 40% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de leguminosas (inmaduro) o alfalfa: alta proteína y energía media-alta para recuperación de condición",
+            "Pastura de leguminosas si hay acceso, vigilando timpanismo",
+            "Pulpa de remolacha (con o sin melaza según sensibilidad) como fuente extra de energía fermentable"
+          ],
+          "forraje_evitar": [
+            "Paja o heno de bermuda como base exclusiva (muy bajo aporte energético y proteico)"
+          ],
+          "concentrado_recomendado": [
+            "Avena o cebada procesada como fuente de energía concentrada (si no hay sensibilidad a almidón)",
+            "Harina de soya como fuente de proteína de alta calidad",
+            "Aceite vegetal (girasol, soya, canola): energía densa sin sobrecargar almidón",
+            "Granos de cervecería secos: proteína + fibra"
+          ],
+          "concentrado_evitar": [
+            "Incrementos abruptos de concentrado (riesgo de cólico/acidosis cecal)"
+          ],
+          "manejo_agua": "Agua fresca disponible ad libitum; vigilar consumo, ya que el aumento de materia seca ingerida depende del consumo de agua.",
+          "suplementos": [
+            "Vitamina E (400-800 UI/día) y vitamina C (1-2 g/día) si hay componente geriátrico o estrés oxidativo asociado",
+            "Mezcla mineral balanceada Ca:P y oligoelementos según tabla NRC para el peso y categoría"
+          ],
+          "reglas_alimentacion": [
+            "Aumentar la ración de forma gradual en 10-14 días para evitar sobrecarga digestiva",
+            "Dividir la dieta en 3-4 porciones diarias",
+            "Revisar y reevaluar peso/condición corporal periódicamente para ajustar la ración",
+            "Priorizar siempre el forraje sobre el concentrado como base calórica"
+          ],
+          "advertencias": [
+            "Evitar realimentación demasiado agresiva en casos de desnutrición severa o prolongada (riesgo de síndrome de realimentación); este perfil es orientativo y requiere supervisión veterinaria."
+          ]
+        },
+        "laminitis": {
+          "nombre_estado": "Laminitis",
+          "fuente": "documentado",
+          "criterio_nutricional": "Basado directamente en la sección 1 de la guía de enfermedades.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 600.0,
+            "ED_Mcal_dia": 32.0,
+            "PC_g_dia": 1034.0,
+            "Ca_g_dia": 48.0,
+            "P_g_dia": 34.8
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 9.0,
+            "forraje_kg_ms_dia": 8.55,
+            "concentrado_kg_ms_dia": 0.45,
+            "criterio": "1.5% del peso corporal en MS/día (95% forraje / 5% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas estación fría (maduro) con NSC < 10-12%, remojado 30-60 min en agua fría antes de ofrecer",
+            "Bermuda (heno, Coastal): bajo en NSC, adecuado para laminitis",
+            "Pulpa de remolacha sin melaza, en cantidades moderadas, como complemento de fibra",
+            "Cáscaras de soya: fibra fermentable de bajo almidón"
+          ],
+          "forraje_evitar": [
+            "Pastura fresca de gramíneas o leguminosas en crecimiento activo (alto en fructanos/NSC, especialmente primavera y otoño)",
+            "Alfalfa en alta proporción si hay sobrepeso asociado"
+          ],
+          "concentrado_recomendado": [
+            "Ninguno con almidón/azúcar; si se requiere energía extra, usar aceite vegetal en pequeñas cantidades"
+          ],
+          "concentrado_evitar": [
+            "Maíz, avena, cebada (alto NSC/almidón)",
+            "Melaza de caña o de remolacha",
+            "Cualquier suplemento con azúcar o fructooligosacáridos"
+          ],
+          "manejo_agua": "Agua limpia ad libitum; sin restricciones especiales relacionadas con laminitis.",
+          "suplementos": [
+            "Bloque de sal mineral (especialmente si la dieta es principalmente heno)"
+          ],
+          "reglas_alimentacion": [
+            "Restringir o eliminar el acceso a pasto fresco, sobre todo en primavera",
+            "Si hay pastoreo permitido, limitarlo a paddocks con pasto bajo (<10 cm) y preferiblemente al amanecer",
+            "Mantener condición corporal 4-5/9 en casos crónicos con trabajo ligero",
+            "Si hay resistencia a la insulina confirmada: NSC total de la dieta < 10%"
+          ],
+          "advertencias": [
+            "No ofrecer frutas o zanahorias como premio salvo en cantidades mínimas y ocasionales",
+            "En ponis y asnos el umbral de riesgo es más bajo que en caballos grandes"
+          ]
+        },
+        "colicos": {
+          "nombre_estado": "Cólicos",
+          "fuente": "documentado",
+          "criterio_nutricional": "Basado directamente en la sección 2 de la guía de enfermedades. Se aplica el manejo general preventivo; si se conoce el subtipo específico (impactación, gases, desplazamiento, enterolitiasis) se pueden aplicar los ajustes adicionales indicados en notas.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 600.0,
+            "ED_Mcal_dia": 32.0,
+            "PC_g_dia": 1034.0,
+            "Ca_g_dia": 48.0,
+            "P_g_dia": 34.8
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 10.8,
+            "forraje_kg_ms_dia": 9.18,
+            "concentrado_kg_ms_dia": 1.62,
+            "criterio": "1.8% del peso corporal en MS/día (85% forraje / 15% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de gramíneas de buena calidad, humedecido si hay antecedentes de impactación",
+            "Forraje picado o en cubos remojados si hay problemas de masticación",
+            "Mezcla gramínea + leguminosa, evitando que la alfalfa supere el 50% del forraje total (riesgo de enterolitiasis)"
+          ],
+          "forraje_evitar": [
+            "Paja como forraje principal (riesgo de impactación)",
+            "Más de 50% de alfalfa en el forraje total",
+            "Pastos frescos introducidos de forma abrupta"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas y frecuentes de concentrado de fácil digestión, fraccionadas"
+          ],
+          "concentrado_evitar": [
+            "Concentrado inmediatamente después de ejercicio intenso (esperar 30-60 min)",
+            "Cambios abruptos en tipo o cantidad de concentrado"
+          ],
+          "manejo_agua": "Acceso constante a agua fresca y limpia (mínimo 20-40 L/día en reposo, más en ejercicio o calor). Agua con bajo contenido mineral (<300 mg TDS si es posible).",
+          "suplementos": [
+            "Sal mineral siempre disponible para estimular consumo de agua",
+            "En riesgo de enterolitiasis: vinagre de manzana en agua o alimento (60-120 ml/día) y psyllium periódico"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares de alimentación; no dejar el estómago vacío más de 5 horas",
+            "Dividir el concentrado en 2-3 porciones diarias, máximo 0.5% del peso corporal por comida",
+            "Cambios de dieta siempre graduales: transición de 7-14 días",
+            "Control de parásitos como parte del manejo preventivo",
+            "Evitar forraje contaminado con hongos, tierra o arena"
+          ],
+          "advertencias": [
+            "Si hay antecedente de cólico por gases: introducir pastoreo gradualmente, máximo 15-20 min/día al inicio, y evitar pastos mojados o con rocío",
+            "Si hay antecedente de enterolitiasis confirmada: cambiar completamente a heno de gramíneas"
+          ]
+        },
+        "influenza": {
+          "nombre_estado": "Influenza equina",
+          "fuente": "inferido",
+          "criterio_nutricional": "INFERIDO: las fuentes no incluyen una sección específica sobre influenza equina. Este perfil se construye a partir de los principios generales de soporte nutricional en enfermedad respiratoria/infecciosa presentes en la guía (sección 8, RAO/Heaves, en cuanto a antioxidantes y calidad del forraje) y de los principios NRC de mantenimiento de consumo voluntario durante enfermedad.",
+          "requerimiento_nrc_referencia": {
+            "peso_actual_kg_ejemplo": 600.0,
+            "ED_Mcal_dia": 32.0,
+            "PC_g_dia": 1034.0,
+            "Ca_g_dia": 48.0,
+            "P_g_dia": 34.8
+          },
+          "plan_racion_estimado": {
+            "materia_seca_total_kg_dia": 10.8,
+            "forraje_kg_ms_dia": 8.64,
+            "concentrado_kg_ms_dia": 2.16,
+            "criterio": "1.8% del peso corporal en MS/día (80% forraje / 20% concentrado)"
+          },
+          "forraje_base": [
+            "Heno de alta calidad, bajo en polvo y hongos (igual criterio que en RAO/Heaves, por similitud de vía respiratoria)",
+            "Heno remojado 30 min antes de ofrecer para reducir polvo, si hay tos o sensibilidad respiratoria",
+            "Forraje palatable y de fácil consumo para mantener ingesta durante el periodo febril/anorexia leve"
+          ],
+          "forraje_evitar": [
+            "Heno polvoso, enmohecido o almacenado en el mismo box del caballo"
+          ],
+          "concentrado_recomendado": [
+            "Raciones pequeñas, palatables, fáciles de masticar; concentrado remojado si hay bajo apetito"
+          ],
+          "concentrado_evitar": [
+            "Forzar grandes raciones de concentrado durante el cuadro febril/anorexia"
+          ],
+          "manejo_agua": "Agua fresca y limpia siempre disponible; vigilar consumo, ya que la fiebre puede aumentar las pérdidas hídricas (criterio inferido por analogía con manejo general de hidratación).",
+          "suplementos": [
+            "INFERIDO por analogía con el manejo de RAO: vitamina C (5-20 mg/kg/día) y vitamina E/Selenio en niveles adecuados, por su rol antioxidante e inmunomodulador",
+            "Aceites omega-3 (aceite de linaza) si hay componente inflamatorio respiratorio, por su efecto antiinflamatorio documentado en la guía para condiciones respiratorias"
+          ],
+          "reglas_alimentacion": [
+            "Mantener horarios regulares y forraje disponible para preservar consumo voluntario",
+            "Reposo del trabajo/ejercicio durante el cuadro agudo (criterio general, no nutricional)",
+            "Reintroducir gradualmente la ración completa al recuperarse el apetito"
+          ],
+          "advertencias": [
+            "INFERIDO: este perfil es soporte nutricional general y NO sustituye el diagnóstico y tratamiento veterinario (incluyendo manejo antipirético, antibiótico si hay infección secundaria, y aislamiento del caballo para control de contagio)."
+          ]
+        }
+      }
+    }
+  }
+}

@@ -3,6 +3,7 @@
 // y expone una función query() reutilizable en toda la aplicación.
 
 const dns = require('dns');
+const net = require('net');
 const path = require('path');
 const { Pool } = require('pg');
 
@@ -25,6 +26,40 @@ const host = process.env.PGHOST || 'localhost';
 // Se activa automáticamente según el host, sin necesidad de otra variable.
 const isLocal = host === 'localhost' || host === '127.0.0.1';
 
+// --- Respaldo de DNS ---
+// En algunas redes el resolver del sistema operativo falla de forma
+// intermitente (getaddrinfo ENOTFOUND) aunque el dominio exista. Si eso
+// ocurre, se consulta a DNS públicos antes de rendirse. El nombre original
+// del host se sigue enviando en TLS (SNI), que Neon usa para identificar
+// la base de datos, así que conectar por IP no afecta la autenticación.
+const resolverPublico = new dns.Resolver();
+resolverPublico.setServers(['1.1.1.1', '8.8.8.8']);
+
+function lookupConRespaldo(hostname, options, callback) {
+  dns.lookup(hostname, options, (err, address, family) => {
+    if (!err || (err.code !== 'ENOTFOUND' && err.code !== 'EAI_AGAIN')) {
+      return callback(err, address, family);
+    }
+    resolverPublico.resolve4(hostname, (errRespaldo, direcciones) => {
+      if (errRespaldo || !direcciones.length) return callback(err);
+      console.warn(`DNS del sistema no resolvió ${hostname}; se usó DNS público.`);
+      if (options.all) {
+        return callback(null, direcciones.map((ip) => ({ address: ip, family: 4 })));
+      }
+      callback(null, direcciones[0], 4);
+    });
+  });
+}
+
+// pg permite entregar su propio socket: es un net.Socket normal cuya
+// conexión usa lookupConRespaldo en lugar de la resolución por defecto.
+function crearSocket() {
+  const socket = new net.Socket();
+  const conectar = socket.connect.bind(socket);
+  socket.connect = (port, hostDestino) => conectar({ port, host: hostDestino, lookup: lookupConRespaldo });
+  return socket;
+}
+
 const pool = new Pool({
   host,
   port: Number(process.env.PGPORT) || 5432,
@@ -32,6 +67,7 @@ const pool = new Pool({
   user: process.env.PGUSER || 'postgres',
   password: process.env.PGPASSWORD || 'postgres',
   ssl: isLocal ? false : { rejectUnauthorized: false },
+  stream: isLocal ? undefined : crearSocket,
 });
 
 // Aviso temprano si la conexión falla de forma inesperada.

@@ -230,9 +230,11 @@ https://pagina-web-dietas-equinos.vercel.app/api/health
 ### Solución de problemas
 
 - **`getaddrinfo ENOTFOUND ep-...neon.tech`** al correr el seed o el servidor
-  en local: suele ser un fallo temporal del DNS de la red, no del proyecto.
-  Comprueba con `nslookup <host>` y vuelve a intentarlo. Si se repite, cambia
-  el DNS del adaptador de red a `1.1.1.1` o `8.8.8.8`.
+  en local: es un fallo intermitente del DNS del sistema operativo, no del
+  proyecto. `db.js` ya lo maneja: si el DNS del sistema falla, resuelve el host
+  con DNS públicos (`1.1.1.1` / `8.8.8.8`) y muestra un aviso en consola. Si
+  aun así ves el error, revisa tu conexión a internet o cambia el DNS del
+  adaptador de red a `1.1.1.1` o `8.8.8.8`.
 - **`/api/health` devuelve 503:** revisa las variables `PG*` en
   *Settings → Environment Variables* de Vercel (o en tu `.env` local).
 

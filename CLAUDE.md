@@ -240,6 +240,7 @@ PORT=3000
 - Carga `backend/.env` por **ruta absoluta** (`path.join(__dirname, '..', '..', '.env')`), así funciona sin importar desde qué carpeta se ejecute Node (incluida la función `api/index.js`).
 - Activa **SSL automáticamente** (`{ rejectUnauthorized: false }`) cuando `PGHOST` no es `localhost`/`127.0.0.1`, como exige Neon.
 - Llama a `dns.setDefaultResultOrder('ipv4first')` para priorizar IPv4.
+- Si el DNS del sistema no resuelve el host remoto, usa DNS públicos como respaldo (ver "Incidencia conocida" más abajo).
 - Exporta `pool` y `query(text, params)` para todos los servicios.
 
 > `backend/.env` ya existe y **actualmente apunta a Neon** (credenciales reales pegadas desde el panel de Neon). No regenerar ni sobrescribir. Nunca se sube a git (lo cubre `backend/.gitignore` y el `.gitignore` raíz). `.env.example` debe contener **solo placeholders**.
@@ -337,7 +338,9 @@ Petición → Vercel
 
 ### Incidencia conocida: `ENOTFOUND` al conectar a Neon (2026-09-27)
 
-`node src/db/seed.js` falló varias veces con `getaddrinfo ENOTFOUND ep-...-pooler...neon.tech`. **Causa:** fallo intermitente del resolver DNS de la red local (router `192.168.80.1`), no del código ni de Neon. `nslookup` resolvía bien, Node fallaba incluso con `neon.tech` y poco después resolvía con normalidad. **Si reaparece:** reintentar, o configurar DNS `1.1.1.1` / `8.8.8.8` en el adaptador de red de Windows. No es necesario cambiar `db.js` a `DATABASE_URL`.
+`node src/db/seed.js` y el servidor local fallaron varias veces con `getaddrinfo ENOTFOUND ep-...-pooler...neon.tech`. **Causa:** el resolver DNS de Windows (`getaddrinfo`, el que usan Node y .NET) falla de forma intermitente en este equipo, aunque el router `192.168.80.1` y `1.1.1.1` responden bien consultados directamente. No es un problema del código ni de Neon.
+
+**Solución aplicada en `db.js`:** el `Pool` recibe `stream: crearSocket`, un `net.Socket` cuya conexión usa `lookupConRespaldo`: primero intenta el DNS del sistema y, solo ante `ENOTFOUND`/`EAI_AGAIN`, resuelve con DNS públicos (`1.1.1.1`, `8.8.8.8`) y registra un aviso en consola. `pg` sigue enviando el hostname original como SNI en TLS, que Neon necesita para identificar el endpoint. Solo se activa con hosts no locales. Opcional a nivel de sistema: poner `1.1.1.1` / `8.8.8.8` como DNS del adaptador Wi-Fi.
 
 ---
 

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm install --prefix backend",
+  "buildCommand": "echo \"Sin paso de build: frontend estatico servido desde frontend/\"",
+  "outputDirectory": "frontend",
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api" }
+  ]
+}

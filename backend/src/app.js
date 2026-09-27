@@ -5,6 +5,8 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 
+const { query } = require('./config/db');
+
 const categoriasRoutes = require('./modules/categorias/categorias.routes');
 const estadosRoutes = require('./modules/estados-salud/estados.routes');
 const dietasRoutes = require('./modules/dietas/dietas.routes');
@@ -20,9 +22,15 @@ app.use('/api/categorias', categoriasRoutes);
 app.use('/api/estados-salud', estadosRoutes);
 app.use('/api/dietas', dietasRoutes);
 
-// Healthcheck.
-app.get('/api/health', (req, res) => {
-  res.json({ estado: 'ok', servicio: 'dietas-equinos-api', hora: new Date().toISOString() });
+// Healthcheck: verifica también la conexión a PostgreSQL.
+app.get('/api/health', async (req, res) => {
+  try {
+    await query('SELECT 1');
+    res.json({ estado: 'ok', servicio: 'dietas-equinos-api', base_datos: 'conectada', hora: new Date().toISOString() });
+  } catch (err) {
+    console.error('Healthcheck: fallo de conexión a PostgreSQL:', err.message);
+    res.status(503).json({ estado: 'error', servicio: 'dietas-equinos-api', base_datos: 'sin conexión' });
+  }
 });
 
 // --- Frontend estático ---

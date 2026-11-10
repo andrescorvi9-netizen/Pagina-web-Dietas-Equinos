@@ -31,7 +31,8 @@ const isLocal = host === 'localhost' || host === '127.0.0.1';
 // intermitente (getaddrinfo ENOTFOUND) aunque el dominio exista. Si eso
 // ocurre, se consulta a DNS públicos antes de rendirse. El nombre original
 // del host se sigue enviando en TLS (SNI), que Neon usa para identificar
-// la base de datos, así que conectar por IP no afecta la autenticación.
+// la base de datos y contra el que se valida el certificado TLS, así que
+// conectar por IP no afecta la autenticación ni la validación.
 const resolverPublico = new dns.Resolver();
 resolverPublico.setServers(['1.1.1.1', '8.8.8.8']);
 
@@ -66,7 +67,10 @@ const pool = new Pool({
   database: process.env.PGDATABASE || 'dietas_equinos',
   user: process.env.PGUSER || 'postgres',
   password: process.env.PGPASSWORD || 'postgres',
-  ssl: isLocal ? false : { rejectUnauthorized: false },
+  // Se valida el certificado TLS del servidor (cadena de confianza y nombre
+  // de host) para evitar ataques de intermediario. pg usa como SNI y para la
+  // verificación el nombre de PGHOST, no la IP a la que conecta crearSocket.
+  ssl: isLocal ? false : { rejectUnauthorized: true },
   stream: isLocal ? undefined : crearSocket,
 });
 

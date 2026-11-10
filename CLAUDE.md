@@ -238,7 +238,8 @@ PORT=3000
 
 `db.js`:
 - Carga `backend/.env` por **ruta absoluta** (`path.join(__dirname, '..', '..', '.env')`), así funciona sin importar desde qué carpeta se ejecute Node (incluida la función `api/index.js`).
-- Activa **SSL automáticamente** (`{ rejectUnauthorized: false }`) cuando `PGHOST` no es `localhost`/`127.0.0.1`, como exige Neon.
+- Activa **SSL automáticamente** (`{ rejectUnauthorized: true }`) cuando `PGHOST` no es `localhost`/`127.0.0.1`, como exige Neon. **Se valida el certificado TLS del servidor** (cadena de confianza y nombre de host) para evitar ataques de intermediario; con `localhost` el SSL queda desactivado (`ssl: false`).
+- La validación del nombre usa el hostname de `PGHOST`, no la IP: `pg` envía `PGHOST` como SNI/`servername` aunque el socket propio (`crearSocket`) conecte por IP, incluso cuando la IP se obtuvo por el DNS público de respaldo. El certificado de Neon es comodín (`*.c-14.us-east-1.aws.neon.tech`, Let's Encrypt), así que no hace falta un `servername` explícito ni un CA propio.
 - Llama a `dns.setDefaultResultOrder('ipv4first')` para priorizar IPv4.
 - Si el DNS del sistema no resuelve el host remoto, usa DNS públicos como respaldo (ver "Incidencia conocida" más abajo).
 - Exporta `pool` y `query(text, params)` para todos los servicios.
@@ -340,7 +341,7 @@ Petición → Vercel
 
 `node src/db/seed.js` y el servidor local fallaron varias veces con `getaddrinfo ENOTFOUND ep-...-pooler...neon.tech`. **Causa:** el resolver DNS de Windows (`getaddrinfo`, el que usan Node y .NET) falla de forma intermitente en este equipo, aunque el router `192.168.80.1` y `1.1.1.1` responden bien consultados directamente. No es un problema del código ni de Neon.
 
-**Solución aplicada en `db.js`:** el `Pool` recibe `stream: crearSocket`, un `net.Socket` cuya conexión usa `lookupConRespaldo`: primero intenta el DNS del sistema y, solo ante `ENOTFOUND`/`EAI_AGAIN`, resuelve con DNS públicos (`1.1.1.1`, `8.8.8.8`) y registra un aviso en consola. `pg` sigue enviando el hostname original como SNI en TLS, que Neon necesita para identificar el endpoint. Solo se activa con hosts no locales. Opcional a nivel de sistema: poner `1.1.1.1` / `8.8.8.8` como DNS del adaptador Wi-Fi.
+**Solución aplicada en `db.js`:** el `Pool` recibe `stream: crearSocket`, un `net.Socket` cuya conexión usa `lookupConRespaldo`: primero intenta el DNS del sistema y, solo ante `ENOTFOUND`/`EAI_AGAIN`, resuelve con DNS públicos (`1.1.1.1`, `8.8.8.8`) y registra un aviso en consola. `pg` sigue enviando el hostname original como SNI en TLS, que Neon necesita para identificar el endpoint y contra el que se valida el certificado (`rejectUnauthorized: true`). Solo se activa con hosts no locales. Opcional a nivel de sistema: poner `1.1.1.1` / `8.8.8.8` como DNS del adaptador Wi-Fi.
 
 ---
 

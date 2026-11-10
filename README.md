@@ -99,7 +99,9 @@ PORT=3000
 ```
 
 Con un host que no sea `localhost`/`127.0.0.1`, la conexión usa **SSL
-automáticamente** (lo exige Neon). No hace falta ninguna variable extra.
+automáticamente** (lo exige Neon) y **valida el certificado TLS del servidor**
+(`rejectUnauthorized: true`), lo que protege contra ataques de intermediario.
+No hace falta ninguna variable extra.
 
 > ⚠️ `backend/.env` contiene credenciales reales y **nunca** debe subirse a
 > git (ya está en `.gitignore`). `.env.example` solo lleva valores de ejemplo.
